@@ -1,0 +1,20 @@
+/* 添加到你的样式表中 */
+.slick-form-dropping {
+  background-color: #e6f7ff; /* 被悬停位置的背景色 */
+  transition: background-color 0.1s ease; /* 平滑的背景色切换 */
+}
+.slick-form-dragging {
+  opacity: 0.5; /* 被拖拽标签的透明度 */
+  transform: scale(1.1); /* 被拖拽标签稍微放大 */
+  border: 1px dashed #1890ff; /* 被拖拽标签的边框样式 */
+  transition: transform 0.1s ease; /* 平滑的放大切换 */
+}
+
+.slick-form-tabShiftRight + :not(:first-child) {
+  transform: translateX(15px); /* 根据实际情况调整移动距离 */
+  transition: transform 0.1s ease-out;
+}
+.slick-form-tabShiftLeft {
+  transform: translateX(15px); /* 根据实际情况调整移动距离 */
+  transition: transform 0.1s ease-out;
+}

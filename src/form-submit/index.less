@@ -1,0 +1,92 @@
+/* CardForm */
+.card-form-start,
+.card-form-center,
+.card-form-end {
+  .ant-card-actions {
+    padding: 0 24px;
+    display: flex;
+    justify-content: flex-end;
+    li {
+      width: auto !important;
+    }
+  }
+}
+.card-form-start {
+  .ant-card-actions {
+    justify-content: flex-start;
+  }
+}
+.card-form-center {
+  .ant-card-actions {
+    justify-content: center;
+  }
+}
+
+/* ModalForm */
+.modal-form-start,
+.modal-form-center,
+.modal-form-end {
+  .ant-modal-footer {
+    padding: 10px 24px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+.modal-form-start {
+  .ant-modal-footer {
+    justify-content: flex-start;
+  }
+}
+.modal-form-center {
+  .ant-modal-footer {
+    justify-content: center;
+  }
+}
+
+/* DrawerForm */
+.drawer-form-start,
+.drawer-form-center,
+.drawer-form-end {
+  .ant-drawer-footer {
+    padding: 10px 24px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+.drawer-form-start {
+  .ant-drawer-footer {
+    justify-content: flex-start;
+  }
+}
+.drawer-form-center {
+  .ant-drawer-footer {
+    justify-content: center;
+  }
+}
+.ant-drawer-inline {
+  position: fixed !important;
+}
+
+.slick-form-step-form {
+  background: #fff;
+  padding: 20px;
+  position: relative;
+  .ant-steps-navigation {
+    padding-top: 0;
+  }
+  &-body {
+    padding: 40px 20px;
+  }
+  &-footer {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    height: 57px;
+    padding: 0 24px;
+    align-items: center;
+    border-top: 1px solid #f5f5f5;
+  }
+}

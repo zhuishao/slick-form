@@ -1,0 +1,27 @@
+.slick-form-copy-container {
+  &.primary {
+    --copy-label-color: #8f96a0;
+    --copy-content-color: #8f96a0;
+  }
+
+  display: flex;
+  .copy-label {
+    margin-right: 6px;
+    color: var(--copy-label-color, inherit);
+  }
+  .copy-content {
+    margin-right: 3px;
+    color: var(--copy-content-color, inherit);
+  }
+  .copy-icon {
+    align-self: self-start;
+    margin-top: 4px;
+    cursor: pointer;
+    color: var(--copy-content-color, inherit);
+    display: flex;
+    align-items: center;
+    &.cd {
+      cursor: default;
+    }
+  }
+}

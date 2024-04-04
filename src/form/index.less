@@ -1,0 +1,85 @@
+@import '//at.alicdn.com/t/c/font_3564443_2vi6xfn2xas.css';
+
+.slick-form-horizontal,
+.slick-form-vertical,
+.slick-form-inline {
+  width: 100%;
+  .slick-form-spin {
+    width: 100%;
+  }
+  .ant-form-item-row {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .ant-form-item {
+    margin-right: 0 !important;
+    .ant-select-multiple .ant-select-selection-item-content {
+      white-space: normal;
+    }
+    .ant-select-selection-item {
+      white-space: normal;
+    }
+    // .ant-select-single {
+    //   .ant-select-selection-item {
+    //     width: 0;
+    //   }
+    // }
+    .ant-form-item-control {
+      .ant-picker,
+      .ant-input,
+      .ant-select,
+      .ant-cascader-picker,
+      .ant-input-number,
+      .ant-input-number-affix-wrapper,
+      .ant-input-number-group-wrapper,
+      .ant-space-align-baseline {
+        width: 100%;
+      }
+      .ant-space-align-baseline {
+        justify-content: space-between;
+      }
+      .ant-upload {
+        cursor: pointer;
+      }
+    }
+    .spicon-loading {
+      display: inline-block;
+      font-size: 20px;
+      color: var(--ant-color-primary);
+      animation: _loading 1.2s linear infinite;
+    }
+  }
+}
+.slick-form-vertical {
+  .ant-form-item {
+    display: flow-root;
+  }
+  .ant-form-item-hidden {
+    display: none;
+  }
+  .ant-space-align-baseline {
+    align-items: center;
+  }
+}
+.slick-form-readonly {
+  .ant-form-item {
+    margin-bottom: 0 !important;
+    .ant-form-item-label {
+      padding: 0;
+      label {
+        color: #666;
+      }
+    }
+    .ant-form-item-control-input-content {
+      color: #111;
+    }
+  }
+}
+@keyframes _loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

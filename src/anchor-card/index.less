@@ -1,0 +1,31 @@
+.m-content {
+  display: flex;
+  .m-left {
+    background: #fff;
+    position: sticky;
+    top: 0;
+    height: 312px;
+    padding: 16px 0;
+    &-nav {
+      text-align: center;
+      line-height: 40px;
+      cursor: pointer;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      -o-text-overflow: ellipsis;
+      padding: 0 12px;
+    }
+    .active {
+      color: var(--ant-color-primary);
+    }
+  }
+  .m-right {
+    overflow-x: scroll;
+    flex: 1 1 auto;
+    margin-left: 24px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

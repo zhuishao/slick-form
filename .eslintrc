@@ -1,11 +1,13 @@
 {
   "parser": "@typescript-eslint/parser",
+  // "plugins": ["@typescript-eslint", "react"],
   "extends": [
     "standard",
     "standard-react",
     "plugin:prettier/recommended",
     "prettier/standard",
     "prettier/react",
+    "eslint:recommend",
     "plugin:@typescript-eslint/eslint-recommended"
   ],
   "env": {
@@ -24,11 +26,22 @@
     }
   },
   "rules": {
-    "space-before-function-paren": 0,
-    "react/prop-types": 0,
-    "react/jsx-handler-names": 0,
-    "react/jsx-fragments": 0,
-    "react/no-unused-prop-types": 0,
-    "import/export": 0
+    "@typescript-eslint/no-require-imports": 0,
+    "react-hooks/exhaustive-deps": 0,
+    "@typescript-eslint/indent": 0,
+    "@typescript-eslint/array-type": 0,
+    "react/jsx-no-bind": 0,
+    "react/jsx-indent": 0,
+    "no-param-reassign": 0,
+    "no-unsafe-finally": 0,
+    "no-console": 0,
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": false,
+        "html": true
+      }
+    ],
+    "prettier/prettier": 0
   }
 }

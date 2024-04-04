@@ -1,0 +1,164 @@
+.slick-form-steps-center {
+  cursor: pointer;
+  pointer-events: auto;
+  inset: 0px;
+  // overflow: hidden;
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  mix-blend-mode: hard-light;
+}
+.slick-form-steps-tips-center {
+  z-index: 10000;
+  opacity: 1;
+  position: absolute;
+  background-color: white;
+  padding: 0px 16px 0px 0px;
+}
+.slick-form-spotlight-setvalue {
+  z-index: 999999;
+  position: relative;
+  color: black !important;
+  background-color: white !important;
+  a {
+    color: black !important;
+  }
+  h1 {
+    color: black !important;
+  }
+  span {
+    color: black !important;
+  }
+  p {
+    color: black !important;
+  }
+}
+.slick-form-spotlight {
+  border-radius: 2px;
+  position: absolute;
+  background-color: gray;
+  // opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.2s ease 0s;
+  border: 2px solid transparent;
+  box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.24), 0 3px 3px 0 rgba(0, 0, 0, 0.28);
+  &.flash {
+    animation: flash 0.8s infinite;
+    @keyframes flash {
+      0% {
+        box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.24),
+          0 2px 2px 0 rgba(0, 0, 0, 0.28);
+      }
+      100% {
+        box-shadow: 1px 1px 2px 1px rgba(250, 100, 0, 0.24),
+          0px 2px 2px 0px rgba(250, 100, 0, 0.38);
+      }
+    }
+  }
+}
+.slick-form-box-tips-center {
+  // background-color: rgb(255, 255, 255);
+  &.default {
+    border-radius: 0px;
+    border: 0px dashed white;
+    color: black;
+    background-color: white;
+  }
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: rgb(51, 51, 51);
+  font-size: 16px;
+  max-width: 100%;
+  padding: 15px;
+  position: fixed;
+  width: 380px;
+  z-index: 100000;
+  border-radius: 30px;
+  border: 1px dashed white;
+  color: white;
+  .slick-form-box-tips-body {
+    text-align: center;
+    line-height: 1.4;
+    padding: 20px 10px;
+  }
+  .slick-form-box-tips-icon {
+    position: absolute;
+    right: 26px;
+    top: 8px;
+    cursor: pointer;
+    .slick-form-box-tips-star {
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      background: url(https://img.alicdn.com/imgextra/i4/O1CN01Fxo07U1N1coO8is6H_!!6000000001510-2-tps-54-51.png)
+        100% 100% no-repeat;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      top: -20px;
+      right: -22px;
+      z-index: -1;
+    }
+  }
+  .slick-form-box-tips-footer {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+    width: 100%;
+  }
+  .slick-form-box-tips-triangle {
+    position: absolute;
+    // left: 50%;
+    // top: 0px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    transform: translateY(-50%) rotate(45deg);
+    z-index: -1;
+  }
+  .slick-form-box-tips-img {
+    position: absolute;
+    // left: 50%;
+    // top: 0px;
+    width: 64px;
+    height: 64px;
+    // background-color: white;
+    // transform: translateY(-50%) rotate(45deg);
+    z-index: 1;
+  }
+  .slick-form-box-tips-img.slick-form-box-tips-img-top-left {
+    top: -70px;
+    background-image: url(https://img.alicdn.com/imgextra/i1/O1CN01VvIgNV1alxtBbpHpF_!!6000000003371-2-tps-65-64.png);
+  }
+  .slick-form-box-tips-img.slick-form-box-tips-img-top-right {
+    top: -70px;
+    right: 0;
+    background-image: url(https://img.alicdn.com/imgextra/i4/O1CN017mksZh1prf3Hoca2T_!!6000000005414-2-tps-65-64.png);
+  }
+  .slick-form-box-tips-img.slick-form-box-tips-img-bottom-left {
+    bottom: -70px;
+    background-image: url(https://img.alicdn.com/imgextra/i3/O1CN013RxKQx1qhPo7hQYri_!!6000000005527-2-tps-65-64.png);
+  }
+  .slick-form-box-tips-img.slick-form-box-tips-img-bottom-right {
+    bottom: -70px;
+    right: 0;
+    background-image: url(https://img.alicdn.com/imgextra/i2/O1CN01Fvfr2G1TlK1TrQsDG_!!6000000002422-2-tps-65-64.png);
+  }
+  .__provious_step {
+    background-color: transparent;
+    border: 0px;
+    border-radius: 0px;
+    // color: rgb(255, 0, 68);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 8px;
+    appearance: none;
+    margin-left: auto;
+    margin-right: 5px;
+  }
+}

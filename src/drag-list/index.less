@@ -1,0 +1,26 @@
+.f-drag-list {
+  display: flex;
+  flex-direction: column;
+  .f-drag-list-item {
+    background: #fff;
+    padding: 0 8px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    .f-drag-list-item-label {
+      font-size: 13px;
+    }
+    .f-drag-list-item-icon {
+      cursor: grab;
+    }
+  }
+  .f-drag-list-item-active-label {
+    color: var(--ant-color-primary);
+  }
+}
+.f-drag-item-dragging {
+  background: #fafafa;
+  border: 1px dashed var(--ant-color-primary);
+  z-index: 9999;
+}

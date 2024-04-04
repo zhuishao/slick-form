@@ -1,0 +1,63 @@
+.slick-form-descriptions {
+  &-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+    .slick-form-descriptions-title {
+      flex: auto;
+      font-weight: 500;
+      font-size: 14px;
+      color: #262626;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .slick-form-descriptions-extra {
+      margin-left: auto;
+      color: #6a6a6a;
+      font-size: 13px;
+    }
+  }
+  &-view {
+    width: 100%;
+    border-radius: 2px;
+    .description-item {
+      display: flex;
+      padding-bottom: 16px;
+      .item-label {
+        font-size: 14px;
+        color: #595959;
+        line-height: 22px;
+        width: auto;
+        text-align: left;
+        flex: none;
+        &:after {
+          content: ':';
+          position: relative;
+          top: -0.5px;
+          margin: 0 8px 0 2px;
+        }
+      }
+      .item-label-right {
+        text-align: right;
+      }
+      .item-value {
+        font-size: 14px;
+        line-height: 22px;
+        text-align: justify;
+        word-break: break-all;
+        color: #262626;
+      }
+    }
+
+    .description-item-horizontal {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .description-item-vertical {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
