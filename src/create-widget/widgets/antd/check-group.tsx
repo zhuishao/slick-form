@@ -1,4 +1,5 @@
 import { Checkbox } from 'antd';
+import React from 'react';
 import CheckGroupAll from './check-group-all';
 
 const CheckGroup = ({

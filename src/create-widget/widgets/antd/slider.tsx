@@ -1,4 +1,5 @@
 import { Slider } from 'antd';
+import React from 'react';
 
 const __Slider__ = ({ readOnlyEmptyValueNode, ...props }) => {
   // 渲染只读视图

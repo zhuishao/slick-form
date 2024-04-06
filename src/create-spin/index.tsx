@@ -1,6 +1,6 @@
 import { uuid } from '@/util';
 import { Spin, SpinProps } from 'antd';
-import { CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 import ReactDOM from 'react-dom';
 import './index.less';
 

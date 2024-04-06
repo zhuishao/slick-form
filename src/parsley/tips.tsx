@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import { debounce } from 'lodash';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { TipsInInter, TipsInterface } from './Interface/Interface';
 
 const query: any = document.querySelector.bind(document); // 选择器

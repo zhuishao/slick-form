@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { AsyncOptionsCache } from '@/util';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cascader from '../../../widgets/antd/cascader';
 
 const AsyncCascader = (props: any) => {

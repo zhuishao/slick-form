@@ -1,4 +1,5 @@
 import { Upload } from 'antd';
+import React from 'react';
 
 const __Upload__ = ({ readOnlyEmptyValueNode, ...props }) => {
   return <Upload {...props} />;

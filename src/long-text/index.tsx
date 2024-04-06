@@ -1,6 +1,6 @@
 import { Typography } from 'antd';
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.less';
 
 const { Paragraph } = Typography;

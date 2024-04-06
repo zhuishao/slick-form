@@ -1,6 +1,6 @@
 import { AsyncOptionsCache } from '@/util';
 import { Empty, Spin } from 'antd';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default (Component: any) =>
   ({ emptyDescription, openOptionsCache = true, ...props }) => {

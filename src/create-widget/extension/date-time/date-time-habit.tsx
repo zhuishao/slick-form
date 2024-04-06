@@ -1,6 +1,6 @@
 import { DatePicker, Select, Space } from 'antd';
 import dayjs from 'dayjs';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default ({ value, onChange, ...props }) => {
   const [date, setDate] = useState<dayjs.Dayjs>(value.date);

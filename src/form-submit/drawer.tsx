@@ -1,6 +1,6 @@
 import staticThemeMethodHooks from '@/static-theme-method';
 import { Drawer } from 'antd';
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Form } from '../index';
 import { getGlobalConfigByName, isObject, uuid } from '../util';
 import Footer from './footer';

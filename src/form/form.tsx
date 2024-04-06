@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { ConfigProvider, Empty, Form, Spin } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import FieldSet from '../create-widget/extension/fields-set';
 import { Grid } from '../index';
 import { cloneDeep, EventEmit, queryFieldByName } from '../util';
@@ -164,7 +164,7 @@ export default ({
   const RenderFields = useCallback(
     ({ itemFields = [] }): any => {
       return (
-        <>
+        <React.Fragment>
           {itemFields.map((field: any, index: number) => {
             if (field.type === 'FieldSet') {
               // 基于gridColumnStart设置列数
@@ -237,7 +237,7 @@ export default ({
               />
             );
           })}
-        </>
+        </React.Fragment>
       );
     },
     [disabled, readOnly]

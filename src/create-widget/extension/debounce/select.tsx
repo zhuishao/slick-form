@@ -3,7 +3,7 @@
 import { AsyncOptionsCache, isEmpty } from '@/util';
 import { Empty, Spin } from 'antd';
 import debounce from 'lodash/debounce';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Select from '../../widgets/antd/select';
 
 const DebounceSelect = ({

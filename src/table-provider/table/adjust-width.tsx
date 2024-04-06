@@ -1,5 +1,5 @@
+import React from 'react';
 import { Resizable } from 'react-resizable';
-
 export default ({ onCellWidthChange, children, width = 120 }: any) => {
   return (
     <Resizable

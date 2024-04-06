@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { Image, message, Upload } from 'antd';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './index.less';
 
 export default (props: any) => {
@@ -62,7 +62,7 @@ export default (props: any) => {
     ? fileList
     : JSON.parse(JSON.stringify(fileList.fileList || []));
   return (
-    <>
+    <React.Fragment>
       <Upload
         {...props}
         fileList={_fileList}
@@ -97,6 +97,6 @@ export default (props: any) => {
       >
         {_fileList.length < maxCount && text}
       </Upload>
-    </>
+    </React.Fragment>
   );
 };

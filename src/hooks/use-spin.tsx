@@ -1,5 +1,5 @@
 import { Spin, SpinProps } from 'antd';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export default (
   props: SpinProps = {

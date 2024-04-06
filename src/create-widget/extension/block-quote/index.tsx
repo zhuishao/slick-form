@@ -1,5 +1,5 @@
+import React from 'react';
 import './index.less';
-
 const BlockQuote = ({
   title,
   subTitle,

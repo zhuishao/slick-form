@@ -2,6 +2,7 @@
  * 电梯表单组件
  */
 
+import React from 'react';
 import { AnchorCardProps } from '../anchor-card';
 import { CardFormProps } from '../form-submit/types';
 import { AnchorCard, CardForm, Form } from '../index';

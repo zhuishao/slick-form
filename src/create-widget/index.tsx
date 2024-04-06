@@ -1,5 +1,7 @@
 /** ui组件 */
 /** 业务组件 */
+import React from 'react';
+
 import OssFileUpload from './business/oss-file-upload';
 import AsyncCascader from './extension/async/cascader';
 import AsyncCheckGroup from './extension/async/check-group';

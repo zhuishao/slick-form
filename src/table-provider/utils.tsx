@@ -5,7 +5,7 @@
 import { cloneDeep, getType, isEmpty } from '@/util';
 import { Space, Tooltip, Typography } from 'antd';
 import dayjs from 'dayjs';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import AdjustWidth from './table/adjust-width';
 import { TableColumnType, UpdateLocalFilterParams } from './types';
 

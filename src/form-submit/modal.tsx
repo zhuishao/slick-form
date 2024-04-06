@@ -1,8 +1,8 @@
 import staticThemeMethodHooks from '@/static-theme-method';
 import { Modal } from 'antd';
-import { useMemo, useRef, useState } from 'react';
-import Draggable from 'react-draggable';
+import React, { useMemo, useRef, useState } from 'react';
 import type { DraggableData, DraggableEvent } from 'react-draggable';
+import Draggable from 'react-draggable';
 import { Form } from '../index';
 import { isObject, uuid } from '../util';
 import Footer from './footer';

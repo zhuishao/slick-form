@@ -1,5 +1,6 @@
 import { getGlobalConfigByName, isEmpty } from '@/util';
 import { Input } from 'antd';
+import React from 'react';
 
 const TextArea = ({ readOnlyEmptyValueNode, ...props }) => {
   const { autoShowFormTextAreaCount } = getGlobalConfigByName('Antd', {});
@@ -32,7 +33,9 @@ const TextArea = ({ readOnlyEmptyValueNode, ...props }) => {
           <div style={{ position: 'absolute', right: 0 }}>
             <span style={{ opacity: 0.6, fontSize: 12 }}>
               {showLen}
-              {!isEmpty(maxLength) && <>/{maxLength}</>}
+              {!isEmpty(maxLength) && (
+                <React.Fragment>/{maxLength}</React.Fragment>
+              )}
             </span>
           </div>
         )}

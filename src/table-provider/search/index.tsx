@@ -2,7 +2,7 @@
 import { cloneDeep, isEmpty } from '@/util';
 import { Button } from 'antd';
 import classNames from 'classnames';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Form } from '../../index';
 import { Ctx } from '../store';
 import { SearchProps } from '../types';
@@ -103,14 +103,14 @@ export default ({
   /** moreRender */
   const moreLabel = useMemo(() => {
     return (
-      <>
+      <React.Fragment>
         {more ? '收起' : '展开'}
         <i
           className={
             more ? 'expand iconfont spicon-zhankai' : 'iconfont spicon-zhankai'
           }
         />
-      </>
+      </React.Fragment>
     );
   }, [more]);
   /** touch search fields */

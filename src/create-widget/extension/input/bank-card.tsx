@@ -1,4 +1,5 @@
 import { InputNumber } from 'antd';
+import React from 'react';
 /**
  * 银行卡输入框、每四位 自动添加空格
  */

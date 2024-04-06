@@ -1,7 +1,7 @@
 import { Button as AButton, Dropdown, Menu, Space } from 'antd';
+import React from 'react';
 import { Button } from '../../index';
 import FilterColumns from './filter-columns';
-
 export default props => {
   const {
     title = '',

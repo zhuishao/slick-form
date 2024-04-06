@@ -1,5 +1,6 @@
 import { getGlobalConfigByName } from '@/util';
 import { InputNumber } from 'antd';
+import React from 'react';
 
 const __InputNumber__ = ({ readOnlyEmptyValueNode, ...props }) => {
   const { min, max, maxLength, ...restProps } = props;

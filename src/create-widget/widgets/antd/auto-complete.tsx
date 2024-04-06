@@ -1,4 +1,5 @@
 import { AutoComplete } from 'antd';
+import React from 'react';
 
 const __AutoComplete__ = ({ readOnlyEmptyValueNode, ...props }) => {
   return <AutoComplete {...props} />;

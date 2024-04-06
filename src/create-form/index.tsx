@@ -1,6 +1,6 @@
 import { getGlobalConfigByName, uuid } from '@/util';
 import { ConfigProvider } from 'antd';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import {
   DrawerForm,

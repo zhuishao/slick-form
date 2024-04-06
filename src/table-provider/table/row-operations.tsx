@@ -1,8 +1,8 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Dropdown, Menu, Typography } from 'antd';
+import React from 'react';
 import { Button } from '../../index';
-
 export default ({
   onSearch,
   onRefresh,
@@ -107,7 +107,7 @@ export default ({
               );
             });
           return (
-            <>
+            <React.Fragment>
               {showMenu.map(menu => {
                 return (
                   <RenderItem
@@ -137,7 +137,7 @@ export default ({
                   </a>
                 </Dropdown>
               )}
-            </>
+            </React.Fragment>
           );
         },
       };

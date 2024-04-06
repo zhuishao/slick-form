@@ -1,7 +1,7 @@
 import { getGlobalConfigByName } from '@/util';
 import { ConfigProvider } from 'antd';
 import { debounce } from 'lodash';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.less';
 import { PluginInter } from './Interface/Interface';
@@ -117,7 +117,7 @@ const Dialog = ({ steps, ...props }) => {
     // 创建弹窗内容
     createdTipsChild(tips);
   };
-  return <></>;
+  return null;
 };
 
 /** 对象直接调用 */

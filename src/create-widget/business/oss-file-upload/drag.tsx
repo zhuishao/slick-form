@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import { DeleteOutlined } from '@ant-design/icons/es/icons';
 import { Image } from 'antd';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import PreviewFile from './preview-file';
 import { downloadOssFile } from './tools';

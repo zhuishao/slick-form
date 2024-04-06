@@ -1,5 +1,5 @@
 import { Col, Row } from 'antd';
-import { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import './index.less';
 import { getElementTop } from './util';
 

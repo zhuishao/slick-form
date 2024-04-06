@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
-import {
+import React, {
   forwardRef,
   memo,
   useEffect,
@@ -12,7 +12,6 @@ import Search from './search';
 import { Ctx } from './store';
 import Table from './table';
 import { PaginationConfig, TableProviderProps } from './types';
-
 // 分页的默认配置
 const defaultPaginationConfig: PaginationConfig = {
   pageNum: 1,

@@ -2,7 +2,7 @@
 /* eslint-disable no-nested-ternary */
 import { Form } from 'antd';
 import mergeWith from 'lodash/mergeWith';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import CreateWidget from '../create-widget';
 import AsyncRender from '../create-widget/extension/async/render';
 import {

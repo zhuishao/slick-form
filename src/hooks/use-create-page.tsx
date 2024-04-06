@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export default () => {
   const [layer, setLayer]: any = useState({
@@ -26,10 +26,10 @@ export default () => {
     createPage(Page: any, Layers: any = {}) {
       const Layer = Layers[layer.key] || null;
       return (
-        <>
+        <div>
           <div style={{ display: layer.newTab ? 'none' : 'block' }}>{Page}</div>
           {Layer && <Layer data={layer.data} />}
-        </>
+        </div>
       );
     },
   };

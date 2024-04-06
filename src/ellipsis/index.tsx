@@ -1,5 +1,5 @@
+import React from 'react';
 import './index.less';
-
 const Ellipsis = ({ children }) => {
   return (
     <div className="slick-form-ellipsis-wrap">

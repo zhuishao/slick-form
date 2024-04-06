@@ -1,5 +1,5 @@
 import { notification, Table } from 'antd';
-import { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { deleteEmptyString, isEmpty } from '../../util';
 import { Ctx } from '../store';
 import { TableProps, TableResponse } from '../types';
@@ -321,7 +321,7 @@ export default ({
         )
       : restProp.infoContent;
   const ToolBarNode = (
-    <>
+    <React.Fragment>
       <ToolBar
         title={title}
         size={size}
@@ -354,7 +354,7 @@ export default ({
           infoBarClassName={restProp.infoBarClassName}
         />
       )}
-    </>
+    </React.Fragment>
   );
   /** 开启虚拟列表 */
   return virtual ? (

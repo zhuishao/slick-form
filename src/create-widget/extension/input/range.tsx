@@ -1,5 +1,5 @@
 import { Space } from 'antd';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import Input from '../../widgets/antd/input';
 import InputNumber from '../../widgets/antd/input-number';
 import './index.less';

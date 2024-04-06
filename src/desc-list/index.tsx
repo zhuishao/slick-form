@@ -1,7 +1,7 @@
 import { Button, Col, Drawer, DrawerProps, Row, Space } from 'antd';
 import { Gutter } from 'antd/lib/grid/row';
 import dayjs from 'dayjs';
-import { FC, Fragment, ReactNode, useEffect, useState } from 'react';
+import React, { FC, Fragment, ReactNode, useEffect, useState } from 'react';
 import './index.less';
 
 interface AnyObj {

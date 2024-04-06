@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import Form from '@/form';
 import { StepProps, Steps } from 'antd';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { FormFieldProps } from '..';
 import { FormLibProps } from '../form/type.form';
 import Footer from './footer';

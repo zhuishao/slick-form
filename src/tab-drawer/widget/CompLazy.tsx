@@ -1,7 +1,7 @@
 /**
  * 组件懒加载
  */
-import { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 interface IProps {
   children?: ReactNode;

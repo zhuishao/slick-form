@@ -1,5 +1,6 @@
 import { TimePicker } from 'antd';
 import dayjs from 'dayjs';
+import React from 'react';
 
 const __TimePicker__ = ({ readOnlyEmptyValueNode, ...props }) => {
   if (props.readOnly) {

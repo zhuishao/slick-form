@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import { AsyncOptionsCache } from '@/util';
 import { Empty, Spin } from 'antd';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TreeSelect from '../../../widgets/antd/tree-select';
 
 const AsyncTreeSelect = (props: any) => {

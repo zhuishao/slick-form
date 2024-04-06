@@ -1,4 +1,5 @@
 import { InputNumber } from 'antd';
+import React from 'react';
 import tools from '../../../tools';
 /**
  * 金额输入框、开启千分位、默认最多15位数字、最小值为0、小数点默认2位

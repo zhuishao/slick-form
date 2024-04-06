@@ -3,7 +3,7 @@ import { toArray } from '@/util/rc';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Col, Row, Tooltip } from 'antd';
 import classNames from 'classnames';
-import * as React from 'react';
+import React from 'react';
 import './index.less';
 import DescriptionsItem from './item';
 
@@ -93,12 +93,12 @@ function Descriptions({
         <DescriptionsItem
           label={
             item?.tooltip ? (
-              <>
+              <span>
                 {item.label}
                 <Tooltip title={item.tooltip}>
                   <QuestionCircleOutlined style={{ marginLeft: 2 }} />
                 </Tooltip>
-              </>
+              </span>
             ) : (
               item.label
             )

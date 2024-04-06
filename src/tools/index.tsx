@@ -1,27 +1,22 @@
-import BigNumber from 'bignumber.js';
 import { message } from 'antd';
+import BigNumber from 'bignumber.js';
 import html2canvas from 'html2canvas';
 import { useReactToPrint as doPrintElement } from 'react-to-print';
-import {
-  downloadFile,
-  compressAndDownload,
-} from './download-util';
+import { compressAndDownload, downloadFile } from './download-util';
 import { distance, memoize, safeStringify } from './map-util/index';
-
 
 const calculate = (
   args: BigNumber.Value[],
-  type: 'plus' | 'minus' | 'multipliedBy' | 'dividedBy',
+  type: 'plus' | 'minus' | 'multipliedBy' | 'dividedBy'
 ) => {
   return Number(
     args
       .reduce((a, b) => {
         return new BigNumber(a)[type](new BigNumber(b));
       })
-      .toString(),
+      .toString()
   );
-}
-
+};
 
 export default {
   /** 浮点数运算 */
@@ -57,7 +52,7 @@ export default {
     options = {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
-    },
+    }
   ) => {
     if (isNaN(Number.parseFloat(number))) {
       return '-';
@@ -65,19 +60,19 @@ export default {
     return Number(number).toLocaleString('zh-CH', options);
   },
   /** 解析url参数 */
-  getUrlSearchParams: <T = any,>(search = '') => {
+  getUrlSearchParams: (search = '') => {
     search = search?.split('?')[1];
-    const params = {};
+    const params: Record<string, string> = {};
     const searchParams: any = new URLSearchParams(search);
     searchParams.forEach((value, key) => {
       params[key] = value;
     });
-    return params as T;
+    return params;
   },
   /** 文件下载 */
   downloadFile,
   /** html解密 */
-  htmlDecode: (input) => {
+  htmlDecode: input => {
     const doc = new DOMParser().parseFromString(input, 'text/html');
     return doc.documentElement.textContent;
   },
@@ -128,7 +123,7 @@ export default {
   /** 缓存函数 */
   memoize,
   /** 获取元素快照 */
-  getElementSnapshot: (element) => {
+  getElementSnapshot: element => {
     return {
       printImg: doPrintElement({
         bodyClass: 'print-class',
@@ -136,9 +131,9 @@ export default {
       }),
       // 直接下载
       downloadImg: (filename: string) =>
-        new Promise((res) => {
+        new Promise(res => {
           html2canvas(document.querySelector(element), { useCORS: true }).then(
-            (canvas) => {
+            canvas => {
               document.documentElement.classList.remove('html2canvas');
               const a = document.createElement('a');
               a.download = filename;
@@ -147,15 +142,15 @@ export default {
               a.click();
               document.body.removeChild(a);
               res(true);
-            },
+            }
           );
         }),
       getDataURL: async (config = {}) =>
-        new Promise((res) => {
+        new Promise(res => {
           html2canvas(document.querySelector(element), {
             useCORS: true,
             ...config,
-          }).then((canvas) => {
+          }).then(canvas => {
             res(canvas.toDataURL());
           });
         }),
@@ -163,7 +158,7 @@ export default {
   },
 
   compressAndDownload,
-  uuid: (size) => Math.random().toString().substr(2, size),
+  uuid: size => Math.random().toString().substr(2, size),
   encode: (str: string): string => {
     try {
       return btoa(encodeURIComponent(str));
@@ -180,7 +175,7 @@ export default {
       return '';
     }
   },
-  sleep: (ms = 1500) => new Promise((res) => setTimeout(res, ms)),
+  sleep: (ms = 1500) => new Promise(res => setTimeout(res, ms)),
   // 判断类型通用方法
   getJSType: (params: unknown): string => {
     if (typeof params !== 'object') {

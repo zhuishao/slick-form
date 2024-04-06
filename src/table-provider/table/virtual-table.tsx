@@ -2,7 +2,7 @@
 import { Divider, Spin, Table } from 'antd';
 import classNames from 'classnames';
 import ResizeObserver from 'rc-resize-observer';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
 
 export default ({
@@ -177,7 +177,7 @@ export default ({
   };
 
   return (
-    <>
+    <React.Fragment>
       {ToolBar}
       <ResizeObserver
         onResize={({ width }) => {
@@ -200,6 +200,6 @@ export default ({
           />
         </div>
       </ResizeObserver>
-    </>
+    </React.Fragment>
   );
 };

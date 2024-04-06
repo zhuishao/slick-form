@@ -1,5 +1,6 @@
 import { optionsValueUnique } from '@/util';
 import { Select } from 'antd';
+import React from 'react';
 
 const __Select__ = ({
   fieldNames = { value: 'value', label: 'label' },

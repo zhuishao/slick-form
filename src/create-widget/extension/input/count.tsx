@@ -1,3 +1,4 @@
+import React from 'react';
 import Input from '../../widgets/antd/input';
 /**
  * 计数器输入框
