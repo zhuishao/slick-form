@@ -5,3 +5,4 @@ yarn-error.log
 .dumi/tmp
 .dumi/tmp-test
 .dumi/tmp-production
+dist/
