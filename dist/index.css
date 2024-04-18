@@ -317,38 +317,6 @@
   transition: transform 0.1s ease-out;
 }
 
-._V1Xve {
-  position: relative;
-  line-height: 2;
-  height: 2em;
-  padding: 0 10px;
-  overflow: hidden;
-  background: #fff;
-  margin: 5px 0;
-}
-._V1Xve ._jchE5 {
-  display: block;
-  position: relative;
-  background: #fff;
-  text-align: justify;
-  height: 2em;
-  overflow: hidden;
-  top: -4em;
-}
-._V1Xve ._27AMS {
-  display: block;
-  max-height: 4em;
-}
-._V1Xve ._jchE5::before {
-  content: attr(title);
-  width: 50%;
-  float: right;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  direction: rtl;
-}
-
 ._2_Y5H {
   height: 16px;
   border-left: 3px solid var(--ant-color-primary);
@@ -553,6 +521,90 @@
   cursor: pointer;
 }
 
+._2-S7L ._3JO-L {
+  height: auto;
+  top: 0;
+}
+._2-S7L ._3JO-L ._wO47l {
+  display: none;
+}
+._2-S7L ._MeNvU ._2h-j2 {
+  position: relative;
+}
+._2-S7L ._MeNvU ._2h-j2 ._2r0Pz {
+  font-size: 12px;
+  line-height: 12px;
+  margin-top: 2px;
+  display: block;
+}
+._2-S7L ._Wel9Z ._275VI {
+  min-height: 14px;
+}
+._2-S7L ._1VYw-,
+._2-S7L td {
+  padding: 10px 8px;
+  vertical-align: top;
+  line-height: 32px;
+}
+._2-S7L ._1VYw- ._iOTgK,
+._2-S7L td ._iOTgK {
+  margin: 0;
+}
+._2-S7L ._29Qei,
+._2-S7L ._mgDtu {
+  width: 100%;
+  margin: 12px 0;
+  color: var(--ant-color-primary);
+  border-color: var(--ant-color-primary);
+}
+._2-S7L ._29Qei:hover,
+._2-S7L ._mgDtu:hover {
+  opacity: 0.6;
+}
+._2-S7L ._mgDtu {
+  color: rgba(0, 0, 0, 0.251) !important;
+}
+._1t4YN td {
+  padding: 16px;
+}
+._1t4YN {
+  background: #fafafa;
+  border: 1px dashed var(--ant-color-primary);
+  z-index: 9999;
+}
+
+._V1Xve {
+  position: relative;
+  line-height: 2;
+  height: 2em;
+  padding: 0 10px;
+  overflow: hidden;
+  background: #fff;
+  margin: 5px 0;
+}
+._V1Xve ._jchE5 {
+  display: block;
+  position: relative;
+  background: #fff;
+  text-align: justify;
+  height: 2em;
+  overflow: hidden;
+  top: -4em;
+}
+._V1Xve ._27AMS {
+  display: block;
+  max-height: 4em;
+}
+._V1Xve ._jchE5::before {
+  content: attr(title);
+  width: 50%;
+  float: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  direction: rtl;
+}
+
 @import '//at.alicdn.com/t/c/font_3564443_2vi6xfn2xas.css';
 ._2xROA,
 ._KcgXT,
@@ -743,6 +795,10 @@
   margin-left: 4px;
   cursor: pointer;
   transition: color 0.3s;
+}
+
+._14nha ._2fdez {
+  color: #fff;
 }
 
 ._3wvmI {

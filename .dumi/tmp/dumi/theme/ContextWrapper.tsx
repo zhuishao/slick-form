@@ -6,10 +6,11 @@ import { useOutlet, history } from 'dumi';
 import { SiteContext } from 'C:/Applications/works/slick-form/node_modules/dumi/dist/client/theme-api/context.js';
 import { demos, components } from '../meta';
 import { locales } from '../locales/config';
+import * as entryMemberExports from 'C:/Applications/works/slick-form/src/index.tsx';
 
 const entryExports = {
   
-  
+  ...entryMemberExports,
 };
 
 export default function DumiContextWrapper() {
@@ -39,7 +40,7 @@ export default function DumiContextWrapper() {
       loading,
       setLoading,
       hostname: undefined,
-      themeConfig: {"footer":"Copyright © 2024 | Powered by <a href=\"https://d.umijs.org\" target=\"_blank\" rel=\"noreferrer\">dumi</a>","prefersColor":{"default":"light","switch":true},"nprogress":true,"lastUpdated":true},
+      themeConfig: {"footer":"Copyright © 2024 | Powered by <a href=\"https://d.umijs.org\" target=\"_blank\" rel=\"noreferrer\">dumi</a>","prefersColor":{"default":"light","switch":true},"nprogress":true,"lastUpdated":true,"logo":"/logo.png","name":"slick-form"},
       _2_level_nav_available: true,
     }}>
       {outlet}

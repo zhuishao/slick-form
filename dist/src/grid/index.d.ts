@@ -1,17 +1,17 @@
-import React, { CSSProperties, ReactNode } from 'react';
+import React, { CSSProperties } from 'react';
 import './index.less';
 interface GridProps {
-    children?: ReactNode;
+    children?: React.ReactNode;
     /**
-     * 间隙设置
+     * @description 间隙设置
      * @default      { rowGap: 20, columnGap: 20 }
      */
     gridStyle?: CSSProperties;
     /**
-     * 等分布局最多四等份
+     * @description 等分布局最多四等份
      * @default      4
      */
     column?: number;
 }
-declare const _default: ({ children, gridStyle, column, }: GridProps) => React.JSX.Element;
-export default _default;
+declare const Grid: React.FC<GridProps>;
+export default Grid;

@@ -1,5 +1,6 @@
-export default {
-  title: 'slick-form', // 库的名称
+import { defineConfig } from 'dumi';
+
+export default defineConfig({
   outputPath: 'docs-dist', // 文档构建输出目录
   extraBabelPlugins: [
     [
@@ -12,6 +13,13 @@ export default {
       },
       'antd',
     ],
-    ['lodash']
   ],
-};
+  apiParser: {},
+  resolve: {
+    entryFile: './src/index.tsx',
+  },
+  themeConfig: {
+    logo: '/logo.png',
+    name: 'slick-form', // 库的名称
+  },
+});

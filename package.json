@@ -15,6 +15,7 @@
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start2": "microbundle-crl watch --no-compress --format modern,cjs",
     "start": "dumi dev",
+    "docs:build": "dumi build",
     "prepare": "run-s build",
     "lint": "eslint --fix",
     "test": "run-s test:unit test:lint test:build",
@@ -23,7 +24,7 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.5",
@@ -39,6 +40,7 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-draggable": "^4.4.6",
+    "react-fast-marquee": "^1.6.4",
     "react-is": "^18.2.0",
     "react-resizable": "^3.0.5",
     "react-sortable-hoc": "^2.0.0",

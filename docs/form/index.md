@@ -7,11 +7,9 @@ nav:
   order: 1
 ---
 
-<div style="display:flex;align-items:center;margin-bottom:24px">
-  <span style="font-size:30px;font-weight:600;display:inline-block;">slick-form</span>
-</div>
+适用于 antd5.x 版本，使用时请在最外层包裹
 
-<Alert>适用于 antd5.x 版本，使用时请在最外层包裹</Alert>
+```text
 
     import { ConfigProvider, App } from 'antd';
 
@@ -20,18 +18,15 @@ nav:
         ...内容
       </App>
     </ConfigProvider>
+```
 
 ## 设计初衷
-
-<Alert>
 
 - 将视图层 Jsx 中所依赖的配置抽离成独立 schema 模块，避免后期不同人开发导致单个页面庞大不好维护
 
 - 采用统一的开发模式，提高项目代码的统一性、可读性、在一定程度上即使你不会 React 也可以完成基础的 CRUD 的页面（后端同学）且代码风格一致
 
 - 统一管理表单项，我们希望所有的表单被统一管理，我们能有入口可以拦截到，去做一些事情。
-
-</Alert>
 
 ## 安装
 
@@ -43,8 +38,6 @@ npm install slick-form --save
 
 ## 为什么不是 XRender、Formily
 
-<Alert>
-
 - [XRender](https://x-render.gitee.io/form-render) 以及 [Formily](https://v2.formilyjs.org/zh-CN/guide) 都是比较成熟的表单解决方案但是他们在 Schema 规范、以及上手需要一定的学习成本
 
 - 底层我们不能完全掌控，我们不能更好的从业务需求的角度去做扩展、加功能，Api 都是被第三方约束了
@@ -53,11 +46,7 @@ npm install slick-form --save
 
 - 最重要的一点，我们会结合自身的业务场景去做扩展，会内置更多符合业务的通用组件
 
-</Alert>
-
 ## 优势
-
-<Alert type="success">
 
 - Form 我们基于 Antd4 的表单进行扩展、增强，编写好配置即可完成复杂的渲染和交互逻辑
 
@@ -65,11 +54,7 @@ npm install slick-form --save
 
 - 我们内置的组件，支持详情和编辑 2 种渲染模式可一键切换[ 点击查看](/form/base#disabledreadonlydisabledfields)
 
-- 提供 vscode 语法提示插件 [ formlib-snippets](https://marketplace.visualstudio.com/items?itemName=QiuQiu.formlib-snippets)，不管使用 schema 还是 jsx 都可以快速生成模版显著提高开发效率
-
 - 通过支持自定义渲染、自定义组件的模式，可以 100%覆盖业务场景[ 点击查看](/form/advance#使用自定义渲染)
-
-</Alert>
 
 ## Form 内置组件
 
@@ -239,12 +224,12 @@ export interface FormConfigProps {
 
 ## Form 属性扩展
 
-<API src="../../src/form/type.form.tsx" hideTitle></API>
+<API id="form1" src="../../src/form/type.form.tsx" hideTitle></API>
 
 ## FormItem 属性扩展
 
-<API src="../../src/form/type.item.tsx" hideTitle></API>
+<API id="formItem1" src="../../src/form/type.item.tsx" hideTitle></API>
 
 ## FormInstance 扩展
 
-<API src="../../src/form/type.instance.tsx" hideTitle></API>
+<API id="formInstance1" src="../../src/form/type.instance.tsx" hideTitle></API>

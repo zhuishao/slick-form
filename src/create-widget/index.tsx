@@ -19,6 +19,8 @@ import BankCardInput from './extension/input/bank-card';
 import CountInput from './extension/input/count';
 import RangeInput from './extension/input/range';
 /** 扩展组件 */
+
+import EditableTable from '../editable-table/index';
 import Render from './extension/render';
 import UploadImage from './extension/upload-image';
 import AutoComplete from './widgets/antd/auto-complete';
@@ -77,6 +79,7 @@ export const BuiltInWidgetMapping: any = {
   CountInput,
   BankCardInput,
   AmountInput,
+  EditableTable,
   RangeInput,
   OssFileUpload,
   DateTimeHabit,
@@ -99,7 +102,7 @@ export default (field: any, formInstance: any = {}, widgets = {}) => {
   }
   // 扩展属性
   const ExpProps: any = {};
-  if (['FormList'].includes(field.type)) {
+  if (['FormList', 'EditableTable'].includes(field.type)) {
     ExpProps.actionRef = field.actionRef;
     ExpProps.event = field.event;
     ExpProps.widgets = widgets;

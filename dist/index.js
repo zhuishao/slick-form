@@ -24,6 +24,7 @@ var FileSaver = _interopDefault(require('file-saver'));
 var JSZip = _interopDefault(require('jszip'));
 var zhCN = _interopDefault(require('antd/lib/locale/zh_CN'));
 var Draggable = _interopDefault(require('react-draggable'));
+var Marquee = _interopDefault(require('react-fast-marquee'));
 var reactResizable = require('react-resizable');
 var reactWindow = require('react-window');
 
@@ -3240,18 +3241,6 @@ var DraggableTabs = function DraggableTabs(props) {
   }))));
 };
 
-var Ellipsis = function Ellipsis(_ref) {
-  var children = _ref.children;
-  return React__default.createElement("div", {
-    className: "slick-form-ellipsis-wrap"
-  }, React__default.createElement("span", {
-    className: "txt"
-  }, children), React__default.createElement("span", {
-    className: "title",
-    title: children
-  }, children));
-};
-
 var _excluded$6 = ["readOnlyEmptyValueNode"];
 var queryLoop = function queryLoop(data, value, fieldNames, labels, level) {
   if (fieldNames === void 0) {
@@ -3965,389 +3954,6 @@ var FieldSet = function FieldSet(_ref) {
 };
 FieldSet.displayName = 'FieldSet';
 
-var isPopupContainer = function isPopupContainer(type) {
-  return ['AsyncSelect', 'AsyncCascader', 'DebounceSelect', 'Select', 'AutoComplete', 'Cascader', 'TreeSelect', 'AsyncTreeSelect', 'DatePicker', 'RangePicker', 'TimeRange', 'TimePicker'].includes(type);
-};
-var isExpansionItemProps = {
-  props: '',
-  isShow: '',
-  transform: '',
-  __parentKey__: '',
-  autosearch: '',
-  effect: '',
-  onEffect: '',
-  effectResetField: '',
-  effectClearField: '',
-  type: '',
-  beforeReceive: '',
-  span: '',
-  itemRender: '',
-  required: '',
-  readOnly: '',
-  disabled: '',
-  labelWidth: '',
-  nameAlise: '',
-  useDefaultRules: ''
-};
-var isItemProps = _extends({
-  colon: '',
-  dependencies: '',
-  extra: '',
-  getValueFromEvent: '',
-  getValueProps: '',
-  hasFeedback: '',
-  help: '',
-  hidden: '',
-  htmlFor: '',
-  initialValue: '',
-  label: '',
-  labelAlign: '',
-  labelCol: '',
-  messageVariables: '',
-  name: '',
-  normalize: '',
-  noStyle: '',
-  preserve: '',
-  required: '',
-  rules: '',
-  shouldUpdate: '',
-  tooltip: '',
-  trigger: '',
-  validateFirst: '',
-  validateStatus: '',
-  validateTrigger: '',
-  valuePropName: '',
-  wrapperCol: ''
-}, isExpansionItemProps);
-var beforeFieldRender = function beforeFieldRender(field, form) {
-  var _field$props, _field$props15;
-  var _getGlobalConfigByNam = getGlobalConfigByName('Antd', {}),
-    autoValidInputNumber = _getGlobalConfigByNam.autoValidInputNumber,
-    autoValidInputLen = _getGlobalConfigByNam.autoValidInputLen,
-    _getGlobalConfigByNam2 = _getGlobalConfigByNam.defaultInputMaxLength,
-    defaultInputMaxLength = _getGlobalConfigByNam2 === void 0 ? 64 : _getGlobalConfigByNam2,
-    autoValidTextAreaLen = _getGlobalConfigByNam.autoValidTextAreaLen,
-    autoValidRequiredInputSpace = _getGlobalConfigByNam.autoValidRequiredInputSpace;
-  if (typeof field.required === 'function') {
-    field.required = field.required(form);
-  }
-  if (typeof field.disabled === 'function') {
-    field.disabled = field.disabled(form);
-  }
-  if (typeof field.readOnly === 'function') {
-    field.readOnly = field.readOnly(form);
-  }
-  var validInput = field.type === 'Input' && autoValidInputLen && !(field === null || field === void 0 ? void 0 : field.isSearchForm) && (field.required !== true || field.required && autoValidRequiredInputSpace !== true);
-  var validTextArea = field.type === 'TextArea' && autoValidTextAreaLen && ((_field$props = field.props) === null || _field$props === void 0 ? void 0 : _field$props.maxLength);
-  if (validInput || validTextArea) {
-    var _field$props2, _field$props3, _field$rules, _field$useDefaultRule;
-    var maxLength = field.type === 'Input' ? ((_field$props2 = field.props) === null || _field$props2 === void 0 ? void 0 : _field$props2.maxLength) || defaultInputMaxLength : (_field$props3 = field.props) === null || _field$props3 === void 0 ? void 0 : _field$props3.maxLength;
-    field.rules = Array.isArray(field.rules) ? field.rules : [];
-    var defaultRules = [{
-      validator: function validator(_, value) {
-        if ((value != null ? value : '').length > maxLength) {
-          return Promise.reject(new Error("\u6700\u591A\u53EF\u8F93\u5165" + maxLength + "\u5B57"));
-        } else {
-          return Promise.resolve();
-        }
-      }
-    }];
-    if (!(field === null || field === void 0 ? void 0 : (_field$rules = field.rules) === null || _field$rules === void 0 ? void 0 : _field$rules.length)) {
-      field.rules = defaultRules;
-    } else if ((_field$useDefaultRule = field === null || field === void 0 ? void 0 : field.useDefaultRules) != null ? _field$useDefaultRule : true) {
-      field.rules = [].concat(defaultRules, field.rules);
-    }
-  }
-  if (field.type === 'DateTimeHabit') {
-    var _field$rules2;
-    var _defaultRules = [{
-      validator: function validator(rule, value) {
-        if (!value.date && !value.time) {
-          return Promise.resolve();
-        }
-        if (!value.date || !value.time) {
-          return Promise.reject('日期和时间点必须同时选择');
-        }
-        return Promise.resolve();
-      }
-    }];
-    if (!(field === null || field === void 0 ? void 0 : (_field$rules2 = field.rules) === null || _field$rules2 === void 0 ? void 0 : _field$rules2.length)) {
-      field.rules = _defaultRules;
-    }
-  }
-  if (field.type === 'InputNumber' && autoValidInputNumber && !(field === null || field === void 0 ? void 0 : field.isSearchForm)) {
-    var _field$rules3;
-    var _field$props4 = field.props,
-      min = _field$props4.min,
-      max = _field$props4.max,
-      _maxLength = _field$props4.maxLength;
-    field.rules = Array.isArray(field.rules) ? field.rules : [];
-    var _defaultRules2 = [{
-      validator: function validator(_, value) {
-        if ([undefined, null].includes(value)) {
-          return Promise.resolve();
-        }
-        if (value.toString().length > _maxLength) {
-          return Promise.reject(new Error("\u6700\u591A\u53EF\u8F93\u5165" + _maxLength + "\u4F4D"));
-        } else if (!isEmpty(min) && value < min) {
-          return Promise.reject(new Error("\u8F93\u5165\u503C\u4E0D\u5F97\u5C0F\u4E8E" + min));
-        } else if (!isEmpty(max) && value > max) {
-          return Promise.reject(new Error("\u8F93\u5165\u503C\u4E0D\u5F97\u5927\u4E8E" + max));
-        } else {
-          return Promise.resolve();
-        }
-      }
-    }];
-    if (!(field === null || field === void 0 ? void 0 : (_field$rules3 = field.rules) === null || _field$rules3 === void 0 ? void 0 : _field$rules3.length)) {
-      field.rules = _defaultRules2;
-    }
-  }
-  if (field.required === true) {
-    var _field$props6;
-    field.rules = Array.isArray(field.rules) ? field.rules : [];
-    if (autoValidRequiredInputSpace && field.type === 'Input' && !(field === null || field === void 0 ? void 0 : field.isSearchForm)) {
-      var _field$props5, _field$rules4, _field$useDefaultRule2;
-      var _maxLength2 = ((_field$props5 = field.props) === null || _field$props5 === void 0 ? void 0 : _field$props5.maxLength) || defaultInputMaxLength;
-      if (field === null || field === void 0 ? void 0 : field.isSearchForm) {
-        return;
-      }
-      var _defaultRules3 = [{
-        required: true,
-        message: field.label + "\u4E0D\u80FD\u4E3A\u7A7A"
-      }, {
-        validator: function validator(_, value) {
-          if (autoValidInputLen && (value != null ? value : '').length > _maxLength2) {
-            return Promise.reject(new Error("\u6700\u591A\u53EF\u8F93\u5165" + _maxLength2 + "\u5B57"));
-          } else if (new RegExp(/\s+/).test(value != null ? value : '')) {
-            return Promise.reject(new Error('请不要输入空格'));
-          } else {
-            return Promise.resolve();
-          }
-        }
-      }];
-      if (!(field === null || field === void 0 ? void 0 : (_field$rules4 = field.rules) === null || _field$rules4 === void 0 ? void 0 : _field$rules4.length)) {
-        field.rules = _defaultRules3;
-      } else if ((_field$useDefaultRule2 = field === null || field === void 0 ? void 0 : field.useDefaultRules) != null ? _field$useDefaultRule2 : true) {
-        field.rules = [].concat(_defaultRules3, field.rules);
-      }
-    } else if (field.type === 'RangePicker' && ((_field$props6 = field.props) === null || _field$props6 === void 0 ? void 0 : _field$props6.mode) === 'split') {
-      var _field$props$canEqual, _field$props7;
-      var canEqual = (_field$props$canEqual = (_field$props7 = field.props) === null || _field$props7 === void 0 ? void 0 : _field$props7.canEqual) != null ? _field$props$canEqual : true;
-      field.rules.push({
-        required: true,
-        message: ''
-      });
-      field.rules.push({
-        validator: function validator(_, value) {
-          var _ref = value || [],
-            start = _ref[0],
-            end = _ref[1];
-          if (!start || !end) {
-            return Promise.reject(new Error((field.label || '') + "\u8D77\u59CB\u548C\u7ED3\u675F\u90FD\u4E0D\u80FD\u4E3A\u7A7A"));
-          } else if (canEqual && start && end && dayjs(end).isBefore(dayjs(start))) {
-            return Promise.reject(new Error('结束时间不能早于开始时间'));
-          } else if (!canEqual && start & end && !dayjs(end).isAfter(dayjs(start))) {
-            return Promise.reject(new Error('结束时间需晚于开始时间'));
-          }
-          return Promise.resolve();
-        }
-      });
-    } else if (field.type === 'RangeInput') {
-      field.rules.push({
-        required: true,
-        message: ''
-      });
-      field.rules.push({
-        validator: function validator(_, value) {
-          var _field$props10, _field$props12, _field$props13;
-          var _ref2 = value || [],
-            start = _ref2[0],
-            end = _ref2[1];
-          if (!start || !end && start !== 0 && end !== 0) {
-            var _field$props8;
-            if (field === null || field === void 0 ? void 0 : (_field$props8 = field.props) === null || _field$props8 === void 0 ? void 0 : _field$props8.oneEmptyErrorText) {
-              var _field$props9;
-              return Promise.reject(new Error(field === null || field === void 0 ? void 0 : (_field$props9 = field.props) === null || _field$props9 === void 0 ? void 0 : _field$props9.oneEmptyErrorText));
-            }
-            return Promise.reject(new Error((field.label || '') + "\u8D77\u59CB\u548C\u7ED3\u675F\u90FD\u4E0D\u80FD\u4E3A\u7A7A"));
-          } else if (!(field === null || field === void 0 ? void 0 : (_field$props10 = field.props) === null || _field$props10 === void 0 ? void 0 : _field$props10.mode) && !isEmpty(start) && !isEmpty(end) && +end < +start) {
-            var _field$props11;
-            return Promise.reject(new Error((field === null || field === void 0 ? void 0 : (_field$props11 = field.props) === null || _field$props11 === void 0 ? void 0 : _field$props11.invertedErrorText) || '结束不能早于开始'));
-          } else if (!(field === null || field === void 0 ? void 0 : (_field$props12 = field.props) === null || _field$props12 === void 0 ? void 0 : _field$props12.mode) && !isEmpty(start) && !isEmpty(end) && (field === null || field === void 0 ? void 0 : (_field$props13 = field.props) === null || _field$props13 === void 0 ? void 0 : _field$props13.notequal) && +end === +start) {
-            var _field$props14;
-            return Promise.reject(new Error((field === null || field === void 0 ? void 0 : (_field$props14 = field.props) === null || _field$props14 === void 0 ? void 0 : _field$props14.equalErrorText) || '结束不能等于开始'));
-          }
-          return Promise.resolve();
-        }
-      });
-    } else {
-      field.rules.push({
-        required: true,
-        message: (field.label || '') + "\u4E0D\u80FD\u4E3A\u7A7A"
-      });
-    }
-  }
-  if (field === null || field === void 0 ? void 0 : field.isSearchForm) {
-    field.props.isSearchForm = true;
-  }
-  if (!(field === null || field === void 0 ? void 0 : field.required) && field.type === 'RangePicker' && ((_field$props15 = field.props) === null || _field$props15 === void 0 ? void 0 : _field$props15.mode) === 'split') {
-    var _field$props$canEqual2, _field$props16;
-    var _canEqual = (_field$props$canEqual2 = (_field$props16 = field.props) === null || _field$props16 === void 0 ? void 0 : _field$props16.canEqual) != null ? _field$props$canEqual2 : true;
-    field.rules = [{
-      required: false,
-      validator: function validator(_, value) {
-        if (value === void 0) {
-          value = [];
-        }
-        var _value = value,
-          start = _value[0],
-          end = _value[1];
-        if (start && !end || !start && end) {
-          return Promise.reject(new Error('请选择完整的时间范围'));
-        } else if (_canEqual && start && end && dayjs(end).isBefore(dayjs(start))) {
-          return Promise.reject(new Error('结束时间不能早于开始时间'));
-        } else if (!_canEqual && start && end && !dayjs(end).isAfter(dayjs(start))) {
-          return Promise.reject(new Error('结束时间需晚于开始时间'));
-        } else {
-          return Promise.resolve();
-        }
-      }
-    }];
-  }
-  if (!(field === null || field === void 0 ? void 0 : field.required) && field.type === 'RangeInput') {
-    field.rules = [{
-      required: false,
-      validator: function validator(_, value) {
-        var _field$props19, _field$props21, _field$props22;
-        if (value === void 0) {
-          value = [];
-        }
-        var _value2 = value,
-          start = _value2[0],
-          end = _value2[1];
-        if (start && !end || !start && end) {
-          var _field$props17;
-          if (field === null || field === void 0 ? void 0 : (_field$props17 = field.props) === null || _field$props17 === void 0 ? void 0 : _field$props17.oneEmptyErrorText) {
-            var _field$props18;
-            return Promise.reject(new Error(field === null || field === void 0 ? void 0 : (_field$props18 = field.props) === null || _field$props18 === void 0 ? void 0 : _field$props18.oneEmptyErrorText));
-          }
-          return Promise.reject(new Error('请选择完整的区间范围'));
-        } else if (!(field === null || field === void 0 ? void 0 : (_field$props19 = field.props) === null || _field$props19 === void 0 ? void 0 : _field$props19.mode) && !isEmpty(start) && !isEmpty(end) && +end < +start) {
-          var _field$props20;
-          return Promise.reject(new Error((field === null || field === void 0 ? void 0 : (_field$props20 = field.props) === null || _field$props20 === void 0 ? void 0 : _field$props20.invertedErrorText) || '结束不能早于开始'));
-        } else if (!(field === null || field === void 0 ? void 0 : (_field$props21 = field.props) === null || _field$props21 === void 0 ? void 0 : _field$props21.mode) && !isEmpty(start) && !isEmpty(end) && (field === null || field === void 0 ? void 0 : (_field$props22 = field.props) === null || _field$props22 === void 0 ? void 0 : _field$props22.notequal) && +end === +start) {
-          var _field$props23;
-          return Promise.reject(new Error((field === null || field === void 0 ? void 0 : (_field$props23 = field.props) === null || _field$props23 === void 0 ? void 0 : _field$props23.equalErrorText) || '结束不能等于开始'));
-        }
-        return Promise.resolve();
-      }
-    }];
-  }
-  var pureFields = {};
-  Object.keys(field).forEach(function (key) {
-    if (!(key in isExpansionItemProps)) {
-      pureFields[key] = field[key];
-    }
-  });
-  return pureFields;
-};
-var splitItemAndFieldProps = function splitItemAndFieldProps(props) {
-  var itemProps = {};
-  var fieldProps = {};
-  Object.keys(props).forEach(function (key) {
-    if (key in isItemProps) {
-      itemProps[key] = props[key];
-    } else {
-      fieldProps[key] = props[key];
-    }
-  });
-  return {
-    itemProps: itemProps,
-    fieldProps: fieldProps
-  };
-};
-var jsxToSchema = function jsxToSchema(children, fields) {
-  if (!Array.isArray(children)) {
-    children = [children];
-  }
-  children.filter(function (i) {
-    return i !== undefined;
-  }).forEach(function (child) {
-    var _child$type;
-    if (Array.isArray(child)) {
-      jsxToSchema(child, fields);
-      return;
-    }
-    if (((_child$type = child.type) === null || _child$type === void 0 ? void 0 : _child$type.displayName) === 'FieldSet') {
-      var _child$props;
-      var _children = [];
-      jsxToSchema((_child$props = child.props) === null || _child$props === void 0 ? void 0 : _child$props.children, _children);
-      var _splitItemAndFieldPro = splitItemAndFieldProps(child.props),
-        itemProps = _splitItemAndFieldPro.itemProps,
-        fieldProps = _splitItemAndFieldPro.fieldProps;
-      var field = _extends({
-        type: 'FieldSet'
-      }, itemProps, {
-        props: _extends({}, fieldProps, {
-          children: _children
-        })
-      });
-      fields.push(field);
-    } else {
-      var _child$type2;
-      if (typeof child === 'string') {
-        return fields.push({
-          type: 'Render',
-          props: {
-            render: function render() {
-              return child;
-            }
-          }
-        });
-      }
-      var type = (_child$type2 = child.type) === null || _child$type2 === void 0 ? void 0 : _child$type2.displayName;
-      if (!(type in BuiltInWidgetMapping)) {
-        type = 'Render';
-      }
-      var _splitItemAndFieldPro2 = splitItemAndFieldProps(child === null || child === void 0 ? void 0 : child.props),
-        _itemProps = _splitItemAndFieldPro2.itemProps,
-        _fieldProps = _splitItemAndFieldPro2.fieldProps;
-      var _field = _extends({
-        type: type
-      }, _itemProps, {
-        props: _extends({}, _fieldProps)
-      });
-      if (_field.type === 'Render') {
-        _field.props.render = function (props) {
-          return _extends({}, child, {
-            props: _extends({}, child.props, props)
-          });
-        };
-      }
-      delete _field.children;
-      fields.push(_field);
-    }
-  });
-};
-var scrollToElement = function scrollToElement(container, childNode, gap) {
-  if (gap === void 0) {
-    gap = 50;
-  }
-  if (childNode) {
-    if (typeof Element.prototype.scrollIntoView === 'function') {
-      childNode.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      });
-    } else {
-      container.scrollTo({
-        top: childNode.offsetTop - container.offsetTop - gap,
-        behavior: 'smooth'
-      });
-    }
-  }
-};
-
 var Item = (function (_ref) {
   var _ref$field = _ref.field,
     field = _ref$field === void 0 ? {} : _ref$field,
@@ -4507,7 +4113,7 @@ var Item = (function (_ref) {
   return vNode;
 });
 
-var Grid = (function (_ref) {
+var Grid = function Grid(_ref) {
   var _ref$children = _ref.children,
     children = _ref$children === void 0 ? null : _ref$children,
     _ref$gridStyle = _ref.gridStyle,
@@ -4521,7 +4127,7 @@ var Grid = (function (_ref) {
     className: "shine-grid-" + column,
     style: gridStyle
   }, children);
-});
+};
 
 var FormList = (function (_ref) {
   var form = _ref.form,
@@ -5595,6 +5201,7 @@ var BuiltInWidgetMapping = {
   CountInput: CountInput,
   BankCardInput: BankCardInput,
   AmountInput: AmountInput,
+  EditableTable: EditableTable,
   RangeInput: RangeInput,
   OssFileUpload: OssFileUpload,
   DateTimeHabit: DateTimeHabit
@@ -5626,7 +5233,7 @@ var CreateWidget = (function (field, formInstance, widgets) {
     });
   }
   var ExpProps = {};
-  if (['FormList'].includes(field.type)) {
+  if (['FormList', 'EditableTable'].includes(field.type)) {
     ExpProps.actionRef = field.actionRef;
     ExpProps.event = field.event;
     ExpProps.widgets = widgets;
@@ -5639,6 +5246,389 @@ var CreateWidget = (function (field, formInstance, widgets) {
     readOnlyEmptyValueNode: field.readOnlyEmptyValueNode
   }, ExpProps, field.props));
 });
+
+var isPopupContainer = function isPopupContainer(type) {
+  return ['AsyncSelect', 'AsyncCascader', 'DebounceSelect', 'Select', 'AutoComplete', 'Cascader', 'TreeSelect', 'AsyncTreeSelect', 'DatePicker', 'RangePicker', 'TimeRange', 'TimePicker'].includes(type);
+};
+var isExpansionItemProps = {
+  props: '',
+  isShow: '',
+  transform: '',
+  __parentKey__: '',
+  autosearch: '',
+  effect: '',
+  onEffect: '',
+  effectResetField: '',
+  effectClearField: '',
+  type: '',
+  beforeReceive: '',
+  span: '',
+  itemRender: '',
+  required: '',
+  readOnly: '',
+  disabled: '',
+  labelWidth: '',
+  nameAlise: '',
+  useDefaultRules: ''
+};
+var isItemProps = _extends({
+  colon: '',
+  dependencies: '',
+  extra: '',
+  getValueFromEvent: '',
+  getValueProps: '',
+  hasFeedback: '',
+  help: '',
+  hidden: '',
+  htmlFor: '',
+  initialValue: '',
+  label: '',
+  labelAlign: '',
+  labelCol: '',
+  messageVariables: '',
+  name: '',
+  normalize: '',
+  noStyle: '',
+  preserve: '',
+  required: '',
+  rules: '',
+  shouldUpdate: '',
+  tooltip: '',
+  trigger: '',
+  validateFirst: '',
+  validateStatus: '',
+  validateTrigger: '',
+  valuePropName: '',
+  wrapperCol: ''
+}, isExpansionItemProps);
+var beforeFieldRender = function beforeFieldRender(field, form) {
+  var _field$props, _field$props15;
+  var _getGlobalConfigByNam = getGlobalConfigByName('Antd', {}),
+    autoValidInputNumber = _getGlobalConfigByNam.autoValidInputNumber,
+    autoValidInputLen = _getGlobalConfigByNam.autoValidInputLen,
+    _getGlobalConfigByNam2 = _getGlobalConfigByNam.defaultInputMaxLength,
+    defaultInputMaxLength = _getGlobalConfigByNam2 === void 0 ? 64 : _getGlobalConfigByNam2,
+    autoValidTextAreaLen = _getGlobalConfigByNam.autoValidTextAreaLen,
+    autoValidRequiredInputSpace = _getGlobalConfigByNam.autoValidRequiredInputSpace;
+  if (typeof field.required === 'function') {
+    field.required = field.required(form);
+  }
+  if (typeof field.disabled === 'function') {
+    field.disabled = field.disabled(form);
+  }
+  if (typeof field.readOnly === 'function') {
+    field.readOnly = field.readOnly(form);
+  }
+  var validInput = field.type === 'Input' && autoValidInputLen && !(field === null || field === void 0 ? void 0 : field.isSearchForm) && (field.required !== true || field.required && autoValidRequiredInputSpace !== true);
+  var validTextArea = field.type === 'TextArea' && autoValidTextAreaLen && ((_field$props = field.props) === null || _field$props === void 0 ? void 0 : _field$props.maxLength);
+  if (validInput || validTextArea) {
+    var _field$props2, _field$props3, _field$rules, _field$useDefaultRule;
+    var maxLength = field.type === 'Input' ? ((_field$props2 = field.props) === null || _field$props2 === void 0 ? void 0 : _field$props2.maxLength) || defaultInputMaxLength : (_field$props3 = field.props) === null || _field$props3 === void 0 ? void 0 : _field$props3.maxLength;
+    field.rules = Array.isArray(field.rules) ? field.rules : [];
+    var defaultRules = [{
+      validator: function validator(_, value) {
+        if ((value != null ? value : '').length > maxLength) {
+          return Promise.reject(new Error("\u6700\u591A\u53EF\u8F93\u5165" + maxLength + "\u5B57"));
+        } else {
+          return Promise.resolve();
+        }
+      }
+    }];
+    if (!(field === null || field === void 0 ? void 0 : (_field$rules = field.rules) === null || _field$rules === void 0 ? void 0 : _field$rules.length)) {
+      field.rules = defaultRules;
+    } else if ((_field$useDefaultRule = field === null || field === void 0 ? void 0 : field.useDefaultRules) != null ? _field$useDefaultRule : true) {
+      field.rules = [].concat(defaultRules, field.rules);
+    }
+  }
+  if (field.type === 'DateTimeHabit') {
+    var _field$rules2;
+    var _defaultRules = [{
+      validator: function validator(rule, value) {
+        if (!value.date && !value.time) {
+          return Promise.resolve();
+        }
+        if (!value.date || !value.time) {
+          return Promise.reject('日期和时间点必须同时选择');
+        }
+        return Promise.resolve();
+      }
+    }];
+    if (!(field === null || field === void 0 ? void 0 : (_field$rules2 = field.rules) === null || _field$rules2 === void 0 ? void 0 : _field$rules2.length)) {
+      field.rules = _defaultRules;
+    }
+  }
+  if (field.type === 'InputNumber' && autoValidInputNumber && !(field === null || field === void 0 ? void 0 : field.isSearchForm)) {
+    var _field$rules3;
+    var _field$props4 = field.props,
+      min = _field$props4.min,
+      max = _field$props4.max,
+      _maxLength = _field$props4.maxLength;
+    field.rules = Array.isArray(field.rules) ? field.rules : [];
+    var _defaultRules2 = [{
+      validator: function validator(_, value) {
+        if ([undefined, null].includes(value)) {
+          return Promise.resolve();
+        }
+        if (value.toString().length > _maxLength) {
+          return Promise.reject(new Error("\u6700\u591A\u53EF\u8F93\u5165" + _maxLength + "\u4F4D"));
+        } else if (!isEmpty(min) && value < min) {
+          return Promise.reject(new Error("\u8F93\u5165\u503C\u4E0D\u5F97\u5C0F\u4E8E" + min));
+        } else if (!isEmpty(max) && value > max) {
+          return Promise.reject(new Error("\u8F93\u5165\u503C\u4E0D\u5F97\u5927\u4E8E" + max));
+        } else {
+          return Promise.resolve();
+        }
+      }
+    }];
+    if (!(field === null || field === void 0 ? void 0 : (_field$rules3 = field.rules) === null || _field$rules3 === void 0 ? void 0 : _field$rules3.length)) {
+      field.rules = _defaultRules2;
+    }
+  }
+  if (field.required === true) {
+    var _field$props6;
+    field.rules = Array.isArray(field.rules) ? field.rules : [];
+    if (autoValidRequiredInputSpace && field.type === 'Input' && !(field === null || field === void 0 ? void 0 : field.isSearchForm)) {
+      var _field$props5, _field$rules4, _field$useDefaultRule2;
+      var _maxLength2 = ((_field$props5 = field.props) === null || _field$props5 === void 0 ? void 0 : _field$props5.maxLength) || defaultInputMaxLength;
+      if (field === null || field === void 0 ? void 0 : field.isSearchForm) {
+        return;
+      }
+      var _defaultRules3 = [{
+        required: true,
+        message: field.label + "\u4E0D\u80FD\u4E3A\u7A7A"
+      }, {
+        validator: function validator(_, value) {
+          if (autoValidInputLen && (value != null ? value : '').length > _maxLength2) {
+            return Promise.reject(new Error("\u6700\u591A\u53EF\u8F93\u5165" + _maxLength2 + "\u5B57"));
+          } else if (new RegExp(/\s+/).test(value != null ? value : '')) {
+            return Promise.reject(new Error('请不要输入空格'));
+          } else {
+            return Promise.resolve();
+          }
+        }
+      }];
+      if (!(field === null || field === void 0 ? void 0 : (_field$rules4 = field.rules) === null || _field$rules4 === void 0 ? void 0 : _field$rules4.length)) {
+        field.rules = _defaultRules3;
+      } else if ((_field$useDefaultRule2 = field === null || field === void 0 ? void 0 : field.useDefaultRules) != null ? _field$useDefaultRule2 : true) {
+        field.rules = [].concat(_defaultRules3, field.rules);
+      }
+    } else if (field.type === 'RangePicker' && ((_field$props6 = field.props) === null || _field$props6 === void 0 ? void 0 : _field$props6.mode) === 'split') {
+      var _field$props$canEqual, _field$props7;
+      var canEqual = (_field$props$canEqual = (_field$props7 = field.props) === null || _field$props7 === void 0 ? void 0 : _field$props7.canEqual) != null ? _field$props$canEqual : true;
+      field.rules.push({
+        required: true,
+        message: ''
+      });
+      field.rules.push({
+        validator: function validator(_, value) {
+          var _ref = value || [],
+            start = _ref[0],
+            end = _ref[1];
+          if (!start || !end) {
+            return Promise.reject(new Error((field.label || '') + "\u8D77\u59CB\u548C\u7ED3\u675F\u90FD\u4E0D\u80FD\u4E3A\u7A7A"));
+          } else if (canEqual && start && end && dayjs(end).isBefore(dayjs(start))) {
+            return Promise.reject(new Error('结束时间不能早于开始时间'));
+          } else if (!canEqual && start & end && !dayjs(end).isAfter(dayjs(start))) {
+            return Promise.reject(new Error('结束时间需晚于开始时间'));
+          }
+          return Promise.resolve();
+        }
+      });
+    } else if (field.type === 'RangeInput') {
+      field.rules.push({
+        required: true,
+        message: ''
+      });
+      field.rules.push({
+        validator: function validator(_, value) {
+          var _field$props10, _field$props12, _field$props13;
+          var _ref2 = value || [],
+            start = _ref2[0],
+            end = _ref2[1];
+          if (!start || !end && start !== 0 && end !== 0) {
+            var _field$props8;
+            if (field === null || field === void 0 ? void 0 : (_field$props8 = field.props) === null || _field$props8 === void 0 ? void 0 : _field$props8.oneEmptyErrorText) {
+              var _field$props9;
+              return Promise.reject(new Error(field === null || field === void 0 ? void 0 : (_field$props9 = field.props) === null || _field$props9 === void 0 ? void 0 : _field$props9.oneEmptyErrorText));
+            }
+            return Promise.reject(new Error((field.label || '') + "\u8D77\u59CB\u548C\u7ED3\u675F\u90FD\u4E0D\u80FD\u4E3A\u7A7A"));
+          } else if (!(field === null || field === void 0 ? void 0 : (_field$props10 = field.props) === null || _field$props10 === void 0 ? void 0 : _field$props10.mode) && !isEmpty(start) && !isEmpty(end) && +end < +start) {
+            var _field$props11;
+            return Promise.reject(new Error((field === null || field === void 0 ? void 0 : (_field$props11 = field.props) === null || _field$props11 === void 0 ? void 0 : _field$props11.invertedErrorText) || '结束不能早于开始'));
+          } else if (!(field === null || field === void 0 ? void 0 : (_field$props12 = field.props) === null || _field$props12 === void 0 ? void 0 : _field$props12.mode) && !isEmpty(start) && !isEmpty(end) && (field === null || field === void 0 ? void 0 : (_field$props13 = field.props) === null || _field$props13 === void 0 ? void 0 : _field$props13.notequal) && +end === +start) {
+            var _field$props14;
+            return Promise.reject(new Error((field === null || field === void 0 ? void 0 : (_field$props14 = field.props) === null || _field$props14 === void 0 ? void 0 : _field$props14.equalErrorText) || '结束不能等于开始'));
+          }
+          return Promise.resolve();
+        }
+      });
+    } else {
+      field.rules.push({
+        required: true,
+        message: (field.label || '') + "\u4E0D\u80FD\u4E3A\u7A7A"
+      });
+    }
+  }
+  if (field === null || field === void 0 ? void 0 : field.isSearchForm) {
+    field.props.isSearchForm = true;
+  }
+  if (!(field === null || field === void 0 ? void 0 : field.required) && field.type === 'RangePicker' && ((_field$props15 = field.props) === null || _field$props15 === void 0 ? void 0 : _field$props15.mode) === 'split') {
+    var _field$props$canEqual2, _field$props16;
+    var _canEqual = (_field$props$canEqual2 = (_field$props16 = field.props) === null || _field$props16 === void 0 ? void 0 : _field$props16.canEqual) != null ? _field$props$canEqual2 : true;
+    field.rules = [{
+      required: false,
+      validator: function validator(_, value) {
+        if (value === void 0) {
+          value = [];
+        }
+        var _value = value,
+          start = _value[0],
+          end = _value[1];
+        if (start && !end || !start && end) {
+          return Promise.reject(new Error('请选择完整的时间范围'));
+        } else if (_canEqual && start && end && dayjs(end).isBefore(dayjs(start))) {
+          return Promise.reject(new Error('结束时间不能早于开始时间'));
+        } else if (!_canEqual && start && end && !dayjs(end).isAfter(dayjs(start))) {
+          return Promise.reject(new Error('结束时间需晚于开始时间'));
+        } else {
+          return Promise.resolve();
+        }
+      }
+    }];
+  }
+  if (!(field === null || field === void 0 ? void 0 : field.required) && field.type === 'RangeInput') {
+    field.rules = [{
+      required: false,
+      validator: function validator(_, value) {
+        var _field$props19, _field$props21, _field$props22;
+        if (value === void 0) {
+          value = [];
+        }
+        var _value2 = value,
+          start = _value2[0],
+          end = _value2[1];
+        if (start && !end || !start && end) {
+          var _field$props17;
+          if (field === null || field === void 0 ? void 0 : (_field$props17 = field.props) === null || _field$props17 === void 0 ? void 0 : _field$props17.oneEmptyErrorText) {
+            var _field$props18;
+            return Promise.reject(new Error(field === null || field === void 0 ? void 0 : (_field$props18 = field.props) === null || _field$props18 === void 0 ? void 0 : _field$props18.oneEmptyErrorText));
+          }
+          return Promise.reject(new Error('请选择完整的区间范围'));
+        } else if (!(field === null || field === void 0 ? void 0 : (_field$props19 = field.props) === null || _field$props19 === void 0 ? void 0 : _field$props19.mode) && !isEmpty(start) && !isEmpty(end) && +end < +start) {
+          var _field$props20;
+          return Promise.reject(new Error((field === null || field === void 0 ? void 0 : (_field$props20 = field.props) === null || _field$props20 === void 0 ? void 0 : _field$props20.invertedErrorText) || '结束不能早于开始'));
+        } else if (!(field === null || field === void 0 ? void 0 : (_field$props21 = field.props) === null || _field$props21 === void 0 ? void 0 : _field$props21.mode) && !isEmpty(start) && !isEmpty(end) && (field === null || field === void 0 ? void 0 : (_field$props22 = field.props) === null || _field$props22 === void 0 ? void 0 : _field$props22.notequal) && +end === +start) {
+          var _field$props23;
+          return Promise.reject(new Error((field === null || field === void 0 ? void 0 : (_field$props23 = field.props) === null || _field$props23 === void 0 ? void 0 : _field$props23.equalErrorText) || '结束不能等于开始'));
+        }
+        return Promise.resolve();
+      }
+    }];
+  }
+  var pureFields = {};
+  Object.keys(field).forEach(function (key) {
+    if (!(key in isExpansionItemProps)) {
+      pureFields[key] = field[key];
+    }
+  });
+  return pureFields;
+};
+var splitItemAndFieldProps = function splitItemAndFieldProps(props) {
+  var itemProps = {};
+  var fieldProps = {};
+  Object.keys(props).forEach(function (key) {
+    if (key in isItemProps) {
+      itemProps[key] = props[key];
+    } else {
+      fieldProps[key] = props[key];
+    }
+  });
+  return {
+    itemProps: itemProps,
+    fieldProps: fieldProps
+  };
+};
+var jsxToSchema = function jsxToSchema(children, fields) {
+  if (!Array.isArray(children)) {
+    children = [children];
+  }
+  children.filter(function (i) {
+    return i !== undefined;
+  }).forEach(function (child) {
+    var _child$type;
+    if (Array.isArray(child)) {
+      jsxToSchema(child, fields);
+      return;
+    }
+    if (((_child$type = child.type) === null || _child$type === void 0 ? void 0 : _child$type.displayName) === 'FieldSet') {
+      var _child$props;
+      var _children = [];
+      jsxToSchema((_child$props = child.props) === null || _child$props === void 0 ? void 0 : _child$props.children, _children);
+      var _splitItemAndFieldPro = splitItemAndFieldProps(child.props),
+        itemProps = _splitItemAndFieldPro.itemProps,
+        fieldProps = _splitItemAndFieldPro.fieldProps;
+      var field = _extends({
+        type: 'FieldSet'
+      }, itemProps, {
+        props: _extends({}, fieldProps, {
+          children: _children
+        })
+      });
+      fields.push(field);
+    } else {
+      var _child$type2;
+      if (typeof child === 'string') {
+        return fields.push({
+          type: 'Render',
+          props: {
+            render: function render() {
+              return child;
+            }
+          }
+        });
+      }
+      var type = (_child$type2 = child.type) === null || _child$type2 === void 0 ? void 0 : _child$type2.displayName;
+      if (!(type in BuiltInWidgetMapping)) {
+        type = 'Render';
+      }
+      var _splitItemAndFieldPro2 = splitItemAndFieldProps(child === null || child === void 0 ? void 0 : child.props),
+        _itemProps = _splitItemAndFieldPro2.itemProps,
+        _fieldProps = _splitItemAndFieldPro2.fieldProps;
+      var _field = _extends({
+        type: type
+      }, _itemProps, {
+        props: _extends({}, _fieldProps)
+      });
+      if (_field.type === 'Render') {
+        _field.props.render = function (props) {
+          return _extends({}, child, {
+            props: _extends({}, child.props, props)
+          });
+        };
+      }
+      delete _field.children;
+      fields.push(_field);
+    }
+  });
+};
+var scrollToElement = function scrollToElement(container, childNode, gap) {
+  if (gap === void 0) {
+    gap = 50;
+  }
+  if (childNode) {
+    if (typeof Element.prototype.scrollIntoView === 'function') {
+      childNode.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    } else {
+      container.scrollTo({
+        top: childNode.offsetTop - container.offsetTop - gap,
+        behavior: 'smooth'
+      });
+    }
+  }
+};
 
 var _getGlobalConfigByNam$1 = getGlobalConfigByName('Antd', {}),
   _getGlobalConfigByNam2 = _getGlobalConfigByNam$1.defaultInputMaxLength,
@@ -6011,7 +6001,430 @@ var expansionInstanceMethod = function expansionInstanceMethod(_ref9) {
   }));
 };
 
-var _excluded$w = ["fields", "widgets", "readOnly", "disabled", "disabledFields", "form", "column", "gridStyle", "className", "initialValues", "onValuesChange", "locale", "getScrollContainer", "scrollToFirstError", "readOnlyEmptyValueNode", "formConfig", "readOnlyClean", "forceUpdate", "name"];
+var AsyncRenderWapper = (function (_ref) {
+  var render = _ref.render,
+    params = _ref.params,
+    asyncOptions = _ref.asyncOptions;
+  var _useState = React.useState(true),
+    spin = _useState[0],
+    setSpin = _useState[1];
+  var _useState2 = React.useState([]),
+    options = _useState2[0],
+    setOptions = _useState2[1];
+  var init = function init() {
+    return Promise.resolve(asyncOptions).then(function (_asyncOptions) {
+      setOptions(_asyncOptions);
+      setSpin(false);
+    });
+  };
+  React.useEffect(function () {
+    init();
+  }, []);
+  if (spin) {
+    return React__default.createElement("i", {
+      className: "iconfont spicon-loading"
+    });
+  }
+  return render.apply(null, [].concat(params, [options])) || '-';
+});
+
+var _excluded$w = ["columns", "value", "onBeforeChange", "onBeforeDelete", "onChange", "readOnly", "sortable", "creatorButtonProps", "maxLength", "position", "actionRef", "defaultAddValue", "name", "optionCellProps"],
+  _excluded2$5 = ["className", "style"];
+var SortableItem = reactSortableHoc.SortableElement(function (props) {
+  return React__default.createElement("tr", Object.assign({}, props));
+});
+var SortableBody = reactSortableHoc.SortableContainer(function (props) {
+  return React__default.createElement("tbody", Object.assign({}, props));
+});
+var DragHandle$1 = reactSortableHoc.SortableHandle(function () {
+  return React__default.createElement("i", {
+    className: "iconfont spicon-drag2",
+    style: {
+      cursor: 'grab',
+      color: '#999'
+    }
+  });
+});
+var EditableTable = (function (_ref) {
+  var _ref$columns = _ref.columns,
+    columns = _ref$columns === void 0 ? [] : _ref$columns,
+    _ref$value = _ref.value,
+    value = _ref$value === void 0 ? [] : _ref$value,
+    onBeforeChange = _ref.onBeforeChange,
+    onBeforeDelete = _ref.onBeforeDelete,
+    onChange = _ref.onChange,
+    _ref$readOnly = _ref.readOnly,
+    readOnly = _ref$readOnly === void 0 ? false : _ref$readOnly,
+    _ref$sortable = _ref.sortable,
+    sortable = _ref$sortable === void 0 ? false : _ref$sortable,
+    _ref$creatorButtonPro = _ref.creatorButtonProps,
+    creatorButtonProps = _ref$creatorButtonPro === void 0 ? {
+      text: '添加一行',
+      style: {},
+      exceedHidden: false
+    } : _ref$creatorButtonPro,
+    _ref$maxLength = _ref.maxLength,
+    maxLength = _ref$maxLength === void 0 ? 999 : _ref$maxLength,
+    _ref$position = _ref.position,
+    position = _ref$position === void 0 ? 'bottom' : _ref$position,
+    _ref$actionRef = _ref.actionRef,
+    actionRef = _ref$actionRef === void 0 ? React.useRef({}) : _ref$actionRef,
+    _ref$defaultAddValue = _ref.defaultAddValue,
+    defaultAddValue = _ref$defaultAddValue === void 0 ? {} : _ref$defaultAddValue,
+    name = _ref.name,
+    _ref$optionCellProps = _ref.optionCellProps,
+    optionCellProps = _ref$optionCellProps === void 0 ? {
+      width: 160,
+      fixed: 'right'
+    } : _ref$optionCellProps,
+    rest = _objectWithoutPropertiesLoose(_ref, _excluded$w);
+  var _Form$useForm = antd.Form.useForm(),
+    form = _Form$useForm[0];
+  var event = React.useMemo(function () {
+    return new EventEmit();
+  }, []);
+  var _useState = React.useState(-1),
+    editIndex = _useState[0],
+    setEditIndex = _useState[1];
+  var _useState2 = React.useState([]),
+    _columns = _useState2[0],
+    setColumns = _useState2[1];
+  var _useState3 = React.useState(value.map(function (v, index) {
+      return _extends({}, v, {
+        index: index
+      });
+    })),
+    dataSource = _useState3[0],
+    setDataSource = _useState3[1];
+  var renderColumns = React.useMemo(function () {
+    return columns.map(function (item, rowIndex) {
+      var definedRender = item.render;
+      return _extends({}, item, {
+        render: function render(e, record, index) {
+          if (editIndex !== record.index || !item.fieldProps) {
+            return typeof definedRender === 'function' ? React__default.createElement(AsyncRenderWapper, Object.assign({}, {
+              render: definedRender,
+              params: [e, record, index],
+              asyncOptions: AsyncOptionsCache[item.dataIndex]
+            })) : e;
+          }
+          var field = typeof item.fieldProps === 'function' ? _extends({}, item.fieldProps(form, {
+            rowKey: item.dataIndex,
+            rowIndex: rowIndex
+          }), {
+            name: item.dataIndex,
+            label: item.title,
+            labelCol: {
+              span: 0
+            }
+          }) : _extends({}, item.fieldProps, {
+            name: item.dataIndex,
+            label: item.title,
+            labelCol: {
+              span: 0
+            }
+          });
+          transformSchema([field], '');
+          return React__default.createElement(Item, {
+            event: event,
+            form: form,
+            className: "f-editable-table-field",
+            initialValues: record,
+            key: item.dataIndex,
+            field: field
+          });
+        }
+      });
+    });
+  }, [columns, editIndex]);
+  React.useEffect(function () {
+    setColumns(renderColumns);
+    if (editIndex !== -1) {
+      var initialValues = {};
+      Object.keys(dataSource[editIndex]).forEach(function (key) {
+        initialValues[key] = dataSource[editIndex][key];
+      });
+      form.setFieldsValue(initialValues);
+    } else {
+      form.resetFields();
+    }
+  }, [editIndex]);
+  React.useEffect(function () {
+    return function () {
+      Object.keys(AsyncOptionsCache).forEach(function (key) {
+        delete AsyncOptionsCache[key];
+      });
+    };
+  }, []);
+  var saveByIndex = function saveByIndex(index) {
+    try {
+      return Promise.resolve(form.validateFields()).then(function (values) {
+        var _temp = _catch(function () {
+          return Promise.resolve(onBeforeChange === null || onBeforeChange === void 0 ? void 0 : onBeforeChange(dataSource.filter(function (i) {
+            return i.index !== index;
+          }), values)).then(function () {
+            Object.assign(dataSource[index], _extends({}, values, {
+              __isNew__: false
+            }));
+            setDataSource([].concat(dataSource));
+            setEditIndex(-1);
+            onChange === null || onChange === void 0 ? void 0 : onChange(dataSource.map(function (i) {
+              var copyItem = _extends({}, i);
+              delete copyItem.index;
+              delete copyItem.__isNew__;
+              return copyItem;
+            }));
+          });
+        }, function (error) {
+          antd.message.warning(error);
+        });
+        if (_temp && _temp.then) return _temp.then(function () {});
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  var removeRowByIndex = function removeRowByIndex(index) {
+    dataSource.splice(index, 1);
+    setDataSource([].concat(dataSource.map(function (v, i) {
+      return _extends({}, v, {
+        index: i
+      });
+    })));
+  };
+  var deleteByIndex = function deleteByIndex(index, __isNew__) {
+    if (__isNew__ === void 0) {
+      __isNew__ = false;
+    }
+    try {
+      var _temp3 = function () {
+        if (__isNew__) {
+          removeRowByIndex(index);
+          setEditIndex(-1);
+        } else {
+          var _temp2 = _catch(function () {
+            return Promise.resolve(onBeforeDelete === null || onBeforeDelete === void 0 ? void 0 : onBeforeDelete(dataSource.find(function (i) {
+              return i.index === index;
+            }))).then(function () {
+              removeRowByIndex(index);
+              setEditIndex(-1);
+              onChange === null || onChange === void 0 ? void 0 : onChange(dataSource.map(function (i) {
+                var copyItem = _extends({}, i);
+                delete copyItem.index;
+                delete copyItem.__isNew__;
+                return copyItem;
+              }));
+            });
+          }, function (error) {
+            antd.message.warning(error);
+          });
+          if (_temp2 && _temp2.then) return _temp2.then(function () {});
+        }
+      }();
+      return Promise.resolve(_temp3 && _temp3.then ? _temp3.then(function () {}) : void 0);
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  var add = function add() {
+    if (position === 'bottom') {
+      dataSource.push(_extends({}, defaultAddValue, {
+        __isNew__: true,
+        index: dataSource.length
+      }));
+      setDataSource([].concat(dataSource));
+      setEditIndex(dataSource.length - 1);
+    } else {
+      dataSource.forEach(function (item) {
+        item.index += 1;
+      });
+      dataSource.unshift({
+        __isNew__: true,
+        index: 0
+      });
+      setDataSource([].concat(dataSource));
+      setEditIndex(0);
+    }
+  };
+  var awaitEditComplete = function awaitEditComplete(index) {
+    if (index === void 0) {
+      index = -1;
+    }
+    return new Promise(function (res) {
+      if (editIndex !== -1 && editIndex !== index) {
+        return antd.message.warning('有未保存的数据，请先保存!');
+      }
+      res(true);
+    });
+  };
+  var onSortEnd = function onSortEnd(_ref2) {
+    var oldIndex = _ref2.oldIndex,
+      newIndex = _ref2.newIndex;
+    try {
+      return Promise.resolve(awaitEditComplete()).then(function () {
+        if (oldIndex !== newIndex) {
+          var newData = reactSortableHoc.arrayMove([].concat(dataSource), oldIndex, newIndex);
+          setDataSource([].concat(newData.map(function (v, i) {
+            return _extends({}, v, {
+              index: i
+            });
+          })));
+          onChange === null || onChange === void 0 ? void 0 : onChange(newData.map(function (i) {
+            var copyItem = _extends({}, i);
+            delete copyItem.index;
+            delete copyItem.__isNew__;
+            return copyItem;
+          }));
+        }
+      });
+    } catch (e) {
+      return Promise.reject(e);
+    }
+  };
+  var renderDom = [React__default.createElement(antd.Table, Object.assign({
+    dataSource: dataSource,
+    key: "table",
+    pagination: false,
+    columns: [sortable ? {
+      title: '',
+      dataIndex: 'sort',
+      width: 60,
+      render: function render() {
+        return React__default.createElement(DragHandle$1, null);
+      }
+    } : undefined].concat(_columns, [!readOnly ? _extends({
+      title: '操作',
+      dataIndex: 'option'
+    }, optionCellProps, {
+      render: function render(text, record, index) {
+        return React__default.createElement(antd.Space, null, React__default.createElement(ProButton, {
+          type: "link",
+          spin: editIndex === index,
+          style: {
+            margin: 0,
+            padding: 0
+          },
+          onClick: function () {
+            try {
+              return Promise.resolve(awaitEditComplete(index)).then(function () {
+                var _temp4 = function () {
+                  if (editIndex === index) {
+                    return Promise.resolve(saveByIndex(index)).then(function () {});
+                  } else {
+                    setEditIndex(index);
+                  }
+                }();
+                if (_temp4 && _temp4.then) return _temp4.then(function () {});
+              });
+            } catch (e) {
+              return Promise.reject(e);
+            }
+          }
+        }, editIndex === index ? '保存' : '编辑'), React__default.createElement(ProButton, {
+          confirm: {
+            title: '是否确认删除?',
+            type: 'pop'
+          },
+          spin: true,
+          type: "link",
+          style: {
+            margin: 0,
+            padding: 0
+          },
+          onClick: function () {
+            return Promise.resolve(deleteByIndex(index)).then(function () {});
+          },
+          onBeforeClick: awaitEditComplete.bind(null, index)
+        }, "\u5220\u9664"), editIndex === index && React__default.createElement("a", {
+          onClick: function onClick() {
+            if (dataSource[index].__isNew__) {
+              deleteByIndex(index, true);
+            } else {
+              setEditIndex(-1);
+            }
+          }
+        }, "\u53D6\u6D88"));
+      }
+    }) : undefined]).filter(function (i) {
+      return i;
+    }),
+    components: sortable ? {
+      body: {
+        wrapper: function wrapper(props) {
+          return React__default.createElement(SortableBody, Object.assign({
+            useDragHandle: true,
+            disableAutoscroll: true,
+            helperClass: "row-dragging",
+            onSortEnd: onSortEnd
+          }, props));
+        },
+        row: function row(props) {
+          var restProps = _objectWithoutPropertiesLoose(props, _excluded2$5);
+          var index = dataSource.findIndex(function (x) {
+            return x[rest.rowKey] === restProps['data-row-key'];
+          });
+          return React__default.createElement(SortableItem, Object.assign({
+            index: index
+          }, restProps));
+        }
+      }
+    } : {}
+  }, rest)), React__default.createElement(ProButton, {
+    type: "dashed",
+    key: "btn",
+    style: creatorButtonProps.style,
+    visible: !readOnly ? !(creatorButtonProps.exceedHidden && dataSource.length >= maxLength) : false,
+    disabled: dataSource.length >= maxLength,
+    icon: React__default.createElement(icons.PlusOutlined, null),
+    className: dataSource.length >= maxLength ? 'editable-table-footer-btn-disabled' : 'editable-table-footer-btn',
+    onClick: function () {
+      try {
+        return Promise.resolve(awaitEditComplete()).then(function () {
+          add();
+        });
+      } catch (e) {
+        return Promise.reject(e);
+      }
+    }
+  }, creatorButtonProps.text)];
+  React.useEffect(function () {
+    actionRef.current[name] = _extends({}, form, {
+      editIndex: editIndex,
+      setEditIndex: setEditIndex,
+      saveEdit: function () {
+        return Promise.resolve(saveByIndex(editIndex)).then(function () {});
+      }
+    });
+  }, [editIndex]);
+  return React__default.createElement("div", {
+    className: "f-edit-table"
+  }, React__default.createElement(antd.Form, {
+    form: form,
+    onValuesChange: function onValuesChange(v) {
+      var key = Object.keys(v)[0];
+      var field = _columns.find(function (i) {
+        return i.dataIndex === key;
+      });
+      event.publish(_extends({}, field, {
+        name: key
+      }));
+    }
+  }, position === 'top' ? renderDom.reverse() : renderDom));
+});
+
+var Ellipsis = function Ellipsis(_ref) {
+  var children = _ref.children;
+  return React__default.createElement("div", {
+    className: "slick-form-ellipsis-wrap"
+  }, React__default.createElement("span", {
+    className: "txt"
+  }, children), React__default.createElement("span", {
+    className: "title",
+    title: children
+  }, children));
+};
+
+var _excluded$x = ["fields", "widgets", "readOnly", "disabled", "disabledFields", "form", "column", "gridStyle", "className", "initialValues", "onValuesChange", "locale", "getScrollContainer", "scrollToFirstError", "readOnlyEmptyValueNode", "formConfig", "readOnlyClean", "forceUpdate", "name"];
 var labelColMap = [4, 6, 8, 10];
 var wrapperColMap = [20, 18, 16, 14];
 var Form = (function (_ref) {
@@ -6053,7 +6466,7 @@ var Form = (function (_ref) {
     readOnlyClean = _ref$readOnlyClean === void 0 ? false : _ref$readOnlyClean,
     forceUpdate = _ref.forceUpdate,
     name = _ref.name,
-    rest = _objectWithoutPropertiesLoose(_ref, _excluded$w);
+    rest = _objectWithoutPropertiesLoose(_ref, _excluded$x);
   if (readOnly) {
     gridStyle = _extends({}, gridStyle, {
       rowGap: gridStyle.rowGap || 10
@@ -6228,7 +6641,7 @@ var Form = (function (_ref) {
   })))));
 });
 
-var _excluded$x = ["form", "onMount", "formConfig"];
+var _excluded$y = ["form", "onMount", "formConfig"];
 var FormLib = function FormLib(formProps) {
   var globalConfig = getGlobalConfigByName('Form', formProps);
   var _Object$assign = Object.assign({}, formProps, globalConfig, {
@@ -6238,7 +6651,7 @@ var FormLib = function FormLib(formProps) {
     form = _Object$assign$form === void 0 ? FormLib.useForm()[0] : _Object$assign$form,
     onMount = _Object$assign.onMount,
     formConfig = _Object$assign.formConfig,
-    props = _objectWithoutPropertiesLoose(_Object$assign, _excluded$x);
+    props = _objectWithoutPropertiesLoose(_Object$assign, _excluded$y);
   var _useState = React.useState(Math.random()),
     reload = _useState[0],
     setReload = _useState[1];
@@ -6451,7 +6864,7 @@ var Footer = (function (_ref) {
   }));
 });
 
-var _excluded$y = ["cardProps", "form", "width", "title", "onClose", "onSubmit", "footer", "actionAlign", "cancelText", "confirmText", "actions"];
+var _excluded$z = ["cardProps", "form", "width", "title", "onClose", "onSubmit", "footer", "actionAlign", "cancelText", "confirmText", "actions"];
 var CardForm = (function (_ref) {
   var _ref$cardProps = _ref.cardProps,
     cardProps = _ref$cardProps === void 0 ? {} : _ref$cardProps,
@@ -6473,7 +6886,7 @@ var CardForm = (function (_ref) {
     _ref$confirmText = _ref.confirmText,
     confirmText = _ref$confirmText === void 0 ? '保存' : _ref$confirmText,
     actions = _ref.actions,
-    rest = _objectWithoutPropertiesLoose(_ref, _excluded$y);
+    rest = _objectWithoutPropertiesLoose(_ref, _excluded$z);
   var _actions = actions || [{
     label: cancelText,
     onClick: onClose
@@ -6544,7 +6957,7 @@ var CardForm = (function (_ref) {
   }))));
 });
 
-var _excluded$z = ["drawerProps", "form", "title", "actionAlign", "className", "width", "open", "onClose", "onSubmit", "cancelConfirm", "okConfirm", "footer", "cancelText", "confirmText", "actions", "render", "closeConfirm", "footerRender"];
+var _excluded$A = ["drawerProps", "form", "title", "actionAlign", "className", "width", "open", "onClose", "onSubmit", "cancelConfirm", "okConfirm", "footer", "cancelText", "confirmText", "actions", "render", "closeConfirm", "footerRender"];
 var DrawerForm = (function (props) {
   var globalConfig = getGlobalConfigByName('DrawerForm', props);
   var _Object$assign = Object.assign({}, props, globalConfig, {
@@ -6578,7 +6991,7 @@ var DrawerForm = (function (props) {
     render = _Object$assign.render,
     closeConfirm = _Object$assign.closeConfirm,
     footerRender = _Object$assign.footerRender,
-    rest = _objectWithoutPropertiesLoose(_Object$assign, _excluded$z);
+    rest = _objectWithoutPropertiesLoose(_Object$assign, _excluded$A);
   var _staticThemeMethodHoo = staticThemeMethodHooks(),
     modal = _staticThemeMethodHoo.modal;
   var id = React.useMemo(function () {
@@ -6689,7 +7102,7 @@ var DrawerForm = (function (props) {
   })));
 });
 
-var _excluded$A = ["modalProps", "form", "title", "actionAlign", "className", "width", "open", "onClose", "onSubmit", "cancelConfirm", "okConfirm", "footer", "cancelText", "confirmText", "actions", "render", "closeConfirm", "drag", "footerRender"];
+var _excluded$B = ["modalProps", "form", "title", "actionAlign", "className", "width", "open", "onClose", "onSubmit", "cancelConfirm", "okConfirm", "footer", "cancelText", "confirmText", "actions", "render", "closeConfirm", "drag", "footerRender"];
 var ModalForm = (function (_ref) {
   var modalProps = _ref.modalProps,
     _ref$form = _ref.form,
@@ -6720,7 +7133,7 @@ var ModalForm = (function (_ref) {
     _ref$drag = _ref.drag,
     drag = _ref$drag === void 0 ? false : _ref$drag,
     footerRender = _ref.footerRender,
-    rest = _objectWithoutPropertiesLoose(_ref, _excluded$A);
+    rest = _objectWithoutPropertiesLoose(_ref, _excluded$B);
   var id = React.useMemo(function () {
     return uuid(10);
   }, []);
@@ -6882,8 +7295,8 @@ var ModalForm = (function (_ref) {
   })));
 });
 
-var _excluded$B = ["type"],
-  _excluded2$5 = ["maskClosable"];
+var _excluded$C = ["type"],
+  _excluded2$6 = ["maskClosable"];
 var WarperMapping = {
   Panel: CardForm,
   Modal: ModalForm,
@@ -6892,10 +7305,10 @@ var WarperMapping = {
 function FormSubmit(_ref) {
   var _ref$type = _ref.type,
     type = _ref$type === void 0 ? 'Panel' : _ref$type,
-    props = _objectWithoutPropertiesLoose(_ref, _excluded$B);
+    props = _objectWithoutPropertiesLoose(_ref, _excluded$C);
   var Popup = WarperMapping[type];
   var maskClosable = props.maskClosable,
-    rest = _objectWithoutPropertiesLoose(props, _excluded2$5);
+    rest = _objectWithoutPropertiesLoose(props, _excluded2$6);
   if (type === 'Modal') {
     return React__default.createElement(Popup, Object.assign({}, rest, {
       modalProps: {
@@ -6913,7 +7326,7 @@ function FormSubmit(_ref) {
   }
 }
 
-var _excluded$C = ["current", "onStepsClick", "form", "stepProps", "steps"];
+var _excluded$D = ["current", "onStepsClick", "form", "stepProps", "steps"];
 var step = (function (_ref) {
   var _ref$current = _ref.current,
     current = _ref$current === void 0 ? 0 : _ref$current,
@@ -6924,7 +7337,7 @@ var step = (function (_ref) {
     _ref$stepProps = _ref.stepProps,
     stepProps = _ref$stepProps === void 0 ? {} : _ref$stepProps,
     steps = _ref.steps,
-    rest = _objectWithoutPropertiesLoose(_ref, _excluded$C);
+    rest = _objectWithoutPropertiesLoose(_ref, _excluded$D);
   var validatorForm = function validatorForm() {
     try {
       return Promise.resolve(_catch(function () {
@@ -7149,6 +7562,35 @@ var index$1 = (function (_ref) {
     onClick: toggleAll
   }, packupText)));
 });
+
+var _excluded$E = ["message", "marqueeProps", "marquee"];
+var NoticeBar = function NoticeBar(_ref) {
+  var message = _ref.message,
+    marqueeProps = _ref.marqueeProps,
+    _ref$marquee = _ref.marquee,
+    marquee = _ref$marquee === void 0 ? false : _ref$marquee,
+    props = _objectWithoutPropertiesLoose(_ref, _excluded$E);
+  return React__default.createElement(antd.Alert, Object.assign({
+    banner: true,
+    className: "slick-form-notice-bar",
+    closable: true,
+    style: {
+      background: '#ff4838',
+      color: '#fff'
+    },
+    type: "error",
+    showIcon: true,
+    message: marquee ? React__default.createElement(Marquee, Object.assign({
+      pauseOnHover: true,
+      gradient: false
+    }, marqueeProps), message) : message,
+    closeIcon: React__default.createElement(icons.CloseOutlined, {
+      style: {
+        color: '#fff'
+      }
+    })
+  }, props));
+};
 
 var notify = function notify(description, type) {
   if (type === void 0) {
@@ -7398,14 +7840,14 @@ var createdTips = function createdTips(subStep) {
   return tips;
 };
 
-var _excluded$D = ["steps"];
+var _excluded$F = ["steps"];
 var _getGlobalConfigByNam$2 = getGlobalConfigByName('themeConfig', {}),
   token$1 = _getGlobalConfigByNam$2.token;
 var continerId = 'Parsley-20220412';
 var overflow = '';
 var Dialog = function Dialog(_ref) {
   var steps = _ref.steps,
-    props = _objectWithoutPropertiesLoose(_ref, _excluded$D);
+    props = _objectWithoutPropertiesLoose(_ref, _excluded$F);
   var _useState = React.useState(1),
     step = _useState[0],
     setStep = _useState[1];
@@ -7751,7 +8193,7 @@ var index$4 = React.forwardRef(function (_ref, ref) {
 
 var Ctx = React.createContext({});
 
-var _excluded$E = ["layout", "hidden", "labelCol", "wrapperCol", "fields", "form", "onSearch", "onReset", "loading", "column", "toolReverse", "defaultExpand", "clearInitialValuesOnReset", "gridStyle", "className"];
+var _excluded$G = ["layout", "hidden", "labelCol", "wrapperCol", "fields", "form", "onSearch", "onReset", "loading", "column", "toolReverse", "defaultExpand", "clearInitialValuesOnReset", "gridStyle", "className"];
 var Search = (function (_ref) {
   var _classNames;
   var _ref$layout = _ref.layout,
@@ -7791,7 +8233,7 @@ var Search = (function (_ref) {
     } : _ref$gridStyle,
     _ref$className = _ref.className,
     className = _ref$className === void 0 ? '' : _ref$className,
-    rest = _objectWithoutPropertiesLoose(_ref, _excluded$E);
+    rest = _objectWithoutPropertiesLoose(_ref, _excluded$G);
   if (fields === undefined || fields.length === 0) {
     return null;
   }
@@ -8153,8 +8595,8 @@ var updateLocalFilter = function updateLocalFilter(_ref3) {
   }
 };
 
-var _excluded$F = ["className", "style", "dataSource"];
-var DragHandle$1 = reactSortableHoc.SortableHandle(function () {
+var _excluded$H = ["className", "style", "dataSource"];
+var DragHandle$2 = reactSortableHoc.SortableHandle(function () {
   return React__default.createElement(icons.MenuOutlined, {
     style: {
       cursor: 'grab',
@@ -8162,10 +8604,10 @@ var DragHandle$1 = reactSortableHoc.SortableHandle(function () {
     }
   });
 });
-var SortableItem = reactSortableHoc.SortableElement(function (props) {
+var SortableItem$1 = reactSortableHoc.SortableElement(function (props) {
   return React__default.createElement("tr", Object.assign({}, props));
 });
-var SortableBody = reactSortableHoc.SortableContainer(function (props) {
+var SortableBody$1 = reactSortableHoc.SortableContainer(function (props) {
   return React__default.createElement("tbody", Object.assign({}, props));
 });
 var _onSortEnd = function onSortEnd(_ref) {
@@ -8186,7 +8628,7 @@ var _onSortEnd = function onSortEnd(_ref) {
   }
 };
 var DraggableContainer = function DraggableContainer(props) {
-  return React__default.createElement(SortableBody, Object.assign({
+  return React__default.createElement(SortableBody$1, Object.assign({
     useDragHandle: true,
     disableAutoscroll: true,
     helperClass: "table-provider-row-dragging",
@@ -8200,11 +8642,11 @@ var DraggableContainer = function DraggableContainer(props) {
 };
 var DraggableBodyRow = function DraggableBodyRow(_ref2) {
   var dataSource = _ref2.dataSource,
-    restProps = _objectWithoutPropertiesLoose(_ref2, _excluded$F);
+    restProps = _objectWithoutPropertiesLoose(_ref2, _excluded$H);
   var index = dataSource.findIndex(function (x) {
     return x.index === restProps['data-row-key'];
   });
-  return React__default.createElement(SortableItem, Object.assign({
+  return React__default.createElement(SortableItem$1, Object.assign({
     index: index
   }, restProps));
 };
@@ -10248,7 +10690,7 @@ var VirtualTable = (function (_ref) {
   }))));
 });
 
-var _excluded$G = ["title", "rowKey", "columns", "tools", "rowOperations", "filterIds", "reload", "pagination", "size", "emptyNode", "rowSelection", "tableId", "drag", "onDragDone", "dragColumn", "autoNo", "keepRowSelectionHistory", "style", "virtual", "loadMoreData", "loadMoreTopData"];
+var _excluded$I = ["title", "rowKey", "columns", "tools", "rowOperations", "filterIds", "reload", "pagination", "size", "emptyNode", "rowSelection", "tableId", "drag", "onDragDone", "dragColumn", "autoNo", "keepRowSelectionHistory", "style", "virtual", "loadMoreData", "loadMoreTopData"];
 var Table = (function (_ref) {
   var _window3;
   var _ref$title = _ref.title,
@@ -10287,7 +10729,7 @@ var Table = (function (_ref) {
     virtual = _ref$virtual === void 0 ? false : _ref$virtual,
     loadMoreData = _ref.loadMoreData,
     loadMoreTopData = _ref.loadMoreTopData,
-    restProp = _objectWithoutPropertiesLoose(_ref, _excluded$G);
+    restProp = _objectWithoutPropertiesLoose(_ref, _excluded$I);
   var ctx = React.useContext(Ctx);
   if (isEmpty(ctx)) {
     throw '请在TableProvider包裹下使用Table';
@@ -10521,7 +10963,7 @@ var Table = (function (_ref) {
       fixed: 'left',
       className: 'drag-visible',
       render: function render() {
-        return React__default.createElement(DragHandle$1, null);
+        return React__default.createElement(DragHandle$2, null);
       }
     }, dragColumn)].concat(newColumns);
   }
@@ -10718,7 +11160,7 @@ var TableProvider = React.forwardRef(Container);
 TableProvider.Search = React.memo(Search);
 TableProvider.Table = Table;
 
-var _excluded$H = ["height", "className", "formProps"];
+var _excluded$J = ["height", "className", "formProps"];
 var index$6 = (function (_ref) {
   var _ref$height = _ref.height,
     height = _ref$height === void 0 ? 500 : _ref$height,
@@ -10726,7 +11168,7 @@ var index$6 = (function (_ref) {
     className = _ref$className === void 0 ? 'anchor-card-form-box' : _ref$className,
     _ref$formProps = _ref.formProps,
     formProps = _ref$formProps === void 0 ? {} : _ref$formProps,
-    rest = _objectWithoutPropertiesLoose(_ref, _excluded$H);
+    rest = _objectWithoutPropertiesLoose(_ref, _excluded$J);
   var _Form$useForm = FormLib.useForm(),
     form = _Form$useForm[0];
   var fileds = Array.isArray(formProps.fields) ? formProps.fields : formProps.fields(form);
@@ -10774,12 +11216,14 @@ exports.Descriptions = Descriptions;
 exports.DragList = DragList;
 exports.DragTabs = DraggableTabs;
 exports.DrawerForm = DrawerForm;
+exports.EditableTable = EditableTable;
 exports.Ellipsis = Ellipsis;
 exports.Form = FormLib;
 exports.FormSubmit = FormSubmit;
 exports.Grid = Grid;
 exports.LongText = index$1;
 exports.ModalForm = ModalForm;
+exports.NoticeBar = NoticeBar;
 exports.OssFileUpload = OssFileUpload;
 exports.PageProvider = index$2;
 exports.Parsley = index$3;

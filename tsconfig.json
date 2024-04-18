@@ -11,7 +11,7 @@
     "strict": false,
     "paths": {
       "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"]
+      "@@/*": [".dumi/tmp/*"]
     },
     "allowSyntheticDefaultImports": true
     // "suppressImplicitAnyIndexErrors": true
