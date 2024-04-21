@@ -68,7 +68,7 @@ export default () => {
 };
 ```
 
-<!-- ## 配合 Form 表单使用
+## 配合 Form 表单使用
 
 ```tsx
 import React from 'react';
@@ -95,7 +95,8 @@ export default () => {
   };
   React.useEffect(() => {
     // 默认第一行开启编辑态
-    form.formListInstance.relationList.setEditIndex(0);
+    console.log(form.formListInstance, 'kdjsl');
+    // form.formListInstance.relationList.setEditIndex(0);
   }, []);
   return (
     <>
@@ -150,7 +151,7 @@ export default () => {
     </>
   );
 };
-``` -->
+```
 
 ## API
 

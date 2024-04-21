@@ -100,7 +100,7 @@ if (
 render();
 
 window.g_umi = {
-  version: '4.1.8',
+  version: '4.1.10',
 };
   
 setDumiPluginManager(getDumiPluginManager());

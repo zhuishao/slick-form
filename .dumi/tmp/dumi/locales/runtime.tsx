@@ -3,7 +3,7 @@
 // DO NOT CHANGE IT MANUALLY!
 import { history } from 'dumi';
 import React, { useState, useLayoutEffect, useCallback, type ReactNode } from 'react';
-import { RawIntlProvider, createIntl, createIntlCache } from 'C:/Applications/works/slick-form/node_modules/react-intl';
+import { RawIntlProvider, createIntl, createIntlCache } from 'C:/Applications/works/slick-form/node_modules/dumi/node_modules/react-intl';
 import { useIsomorphicLayoutEffect } from 'C:/Applications/works/slick-form/node_modules/dumi/dist/client/theme-api/utils.js'
 import { locales, messages } from './config';
 

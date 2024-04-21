@@ -42,6 +42,7 @@ import TimeRange from './widgets/antd/time-range';
 import TreeSelect from './widgets/antd/tree-select';
 import Upload from './widgets/antd/upload';
 
+console.log('Editable', EditableTable);
 // 内置组件映射关系
 export const BuiltInWidgetMapping: any = {
   // antd

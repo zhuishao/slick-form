@@ -14,10 +14,6 @@ export default defineConfig({
       'antd',
     ],
   ],
-  apiParser: {},
-  resolve: {
-    entryFile: './src/index.tsx',
-  },
   themeConfig: {
     logo: '/logo.png',
     name: 'slick-form', // 库的名称

@@ -14,9 +14,9 @@ import { Button } from '../index';
 import AsyncRenderWapper from './async-render-wapper';
 import './index.less';
 
-const SortableItem = SortableElement(props => <tr {...props} />);
+const SortableItem = SortableElement((props: any) => <tr {...props} />);
 
-const SortableBody = SortableContainer(props => <tbody {...props} />);
+const SortableBody = SortableContainer((props: any) => <tbody {...props} />);
 
 const DragHandle = SortableHandle(() => (
   <i
@@ -32,11 +32,11 @@ interface EditTableProps {
   /** 数据源 */
   value?: any;
   /** 数据即将改变 */
-  onBeforeChange?: (value, values) => Promise<any>;
+  onBeforeChange?: (value: any, values: any) => Promise<any>;
   /** 数据即将删除 */
-  onBeforeDelete?: (value) => Promise<any>;
+  onBeforeDelete?: (value: any) => Promise<any>;
   /** 数据改变 */
-  onChange?: (value) => void;
+  onChange?: (value: any) => void;
   /** 是否只读 */
   readOnly?: boolean;
   /** 是否支持排序 */
@@ -88,20 +88,20 @@ export default ({
   const [_columns, setColumns] = useState([]); // 列信息
   const [dataSource, setDataSource] = useState<any[]>(
     // 扩展数据源
-    value.map((v, index) => {
+    value.map((v: any, index: number) => {
       return {
         ...v,
         index, // 注入下标
       };
-    })
+    }),
   );
   // 扩展列的render
   const renderColumns = useMemo(() => {
-    return columns.map((item, rowIndex) => {
+    return columns.map((item: any, rowIndex: number) => {
       const definedRender = item.render; // 用户定义的render
       return {
         ...item,
-        render: (e, record, index) => {
+        render: (e: any, record: any, index: any) => {
           if (editIndex !== record.index || !item.fieldProps) {
             return typeof definedRender === 'function' ? (
               <AsyncRenderWapper
@@ -152,8 +152,8 @@ export default ({
     setColumns(renderColumns);
     if (editIndex !== -1) {
       // 设置表单默认值
-      const initialValues = {};
-      Object.keys(dataSource[editIndex]).forEach(key => {
+      const initialValues: Record<string, any> = {};
+      Object.keys(dataSource[editIndex]).forEach((key) => {
         initialValues[key] = dataSource[editIndex][key];
       });
       form.setFieldsValue(initialValues);
@@ -164,7 +164,7 @@ export default ({
   // 卸载清除缓存
   useEffect(() => {
     return () => {
-      Object.keys(AsyncOptionsCache).forEach(key => {
+      Object.keys(AsyncOptionsCache).forEach((key) => {
         delete AsyncOptionsCache[key];
       });
     };
@@ -176,8 +176,8 @@ export default ({
     try {
       // 确认的钩子
       await onBeforeChange?.(
-        dataSource.filter(i => i.index !== index),
-        values
+        dataSource.filter((i) => i.index !== index),
+        values,
       );
       Object.assign(dataSource[index], {
         ...values,
@@ -186,12 +186,12 @@ export default ({
       setDataSource([...dataSource]);
       setEditIndex(-1); // 完成编辑
       onChange?.(
-        dataSource.map(i => {
+        dataSource.map((i) => {
           const copyItem = { ...i };
           delete copyItem.index;
           delete copyItem.__isNew__;
           return copyItem;
-        })
+        }),
       );
     } catch (error) {
       message.warning(error);
@@ -219,16 +219,16 @@ export default ({
     } else {
       try {
         // 删除的钩子
-        await onBeforeDelete?.(dataSource.find(i => i.index === index));
+        await onBeforeDelete?.(dataSource.find((i) => i.index === index));
         removeRowByIndex(index);
         setEditIndex(-1); // 完成编辑
         onChange?.(
-          dataSource.map(i => {
+          dataSource.map((i) => {
             const copyItem = { ...i };
             delete copyItem.index;
             delete copyItem.__isNew__;
             return copyItem;
-          })
+          }),
         );
       } catch (error) {
         message.warning(error);
@@ -246,7 +246,7 @@ export default ({
       setDataSource([...dataSource]);
       setEditIndex(dataSource.length - 1);
     } else {
-      dataSource.forEach(item => {
+      dataSource.forEach((item) => {
         // 所有下标前进1
         item.index += 1;
       });
@@ -260,11 +260,11 @@ export default ({
   };
   // 等待编辑完成
   const awaitEditComplete = (
-    index = -1 // index当前正在编辑的行，默认是-1
+    index = -1, // index当前正在编辑的行，默认是-1
   ) =>
-    new Promise(res => {
+    new Promise((res) => {
       if (editIndex !== -1 && editIndex !== index) {
-        return message.warning('有未保存的数据，请先保存!');
+        return message.warn('有未保存的数据，请先保存!');
       }
       res(true);
     });
@@ -290,12 +290,12 @@ export default ({
         }),
       ]);
       onChange?.(
-        newData.map(i => {
+        newData.map((i) => {
           const copyItem = { ...i };
           delete copyItem.index;
           delete copyItem.__isNew__;
           return copyItem;
-        })
+        }),
       );
     }
   };
@@ -320,7 +320,7 @@ export default ({
               title: '操作',
               dataIndex: 'option',
               ...optionCellProps,
-              render(text, record, index) {
+              render(text: any, record: any, index: any) {
                 return (
                   <Space>
                     <Button
@@ -371,7 +371,7 @@ export default ({
               },
             }
           : undefined,
-      ].filter(i => i)}
+      ].filter((i) => i)}
       components={
         sortable
           ? {
@@ -389,7 +389,7 @@ export default ({
                   const { className, style, ...restProps } = props;
                   // function findIndex base on Table rowKey props and should always be a right array index
                   const index = dataSource.findIndex(
-                    x => x[rest.rowKey] === restProps['data-row-key']
+                    (x) => x[rest.rowKey] === restProps['data-row-key'],
                   );
                   return <SortableItem index={index} {...restProps} />;
                 },
@@ -425,7 +425,7 @@ export default ({
   ];
   /** 挂载 Api */
   useEffect(() => {
-    actionRef.current[name] = {
+    actionRef.current[name as string] = {
       ...form,
       editIndex,
       setEditIndex,
@@ -434,14 +434,13 @@ export default ({
       },
     };
   }, [editIndex]);
-
   return (
     <div className="f-edit-table">
       <Form
         form={form}
-        onValuesChange={v => {
+        onValuesChange={(v) => {
           const key = Object.keys(v)[0];
-          const field: any = _columns.find(i => i.dataIndex === key);
+          const field: any = _columns.find((i: any) => i.dataIndex === key);
           event.publish({
             ...field,
             name: key,
