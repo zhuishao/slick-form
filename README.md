@@ -1,6 +1,6 @@
 ## 安装
 
-组件库本身依赖 ant design，使用需要同时安装 antd，在 src/global.less 中全量引入 antd less 文件
+组件库本身依赖 ant design，使用需要同时安装 antd 5，在 src/global.less 中全量引入 antd less 文件
 
 ```shell
 npm install slick-form --save
@@ -59,7 +59,7 @@ export default () => {
           name: 'liked',
           props: {
             options: async () => {
-              await new Promise(res => setTimeout(res, 1000));
+              await new Promise((res) => setTimeout(res, 1000));
               return [
                 {
                   label: '爱好1',
@@ -146,7 +146,7 @@ export default () => {
           type: 'AsyncRender',
           props: {
             async render(form) {
-              await new Promise(res => setTimeout(res, 1000));
+              await new Promise((res) => setTimeout(res, 1000));
               return <div>自定义异步渲染</div>;
             },
           },
