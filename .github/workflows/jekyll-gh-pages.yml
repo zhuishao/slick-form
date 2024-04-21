@@ -1,0 +1,31 @@
+name: Build and Deploy Documentation
+
+on:
+  push:
+    branches:
+      - master # 或者是你的默认分支，比如 master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.20.2'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Docs
+      run: npm run build:docs # 这里假设你有一个npm脚本，名为build:docs，用于构建你的文档
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs-dist # 这是dumi构建文档的输出目录
