@@ -264,7 +264,7 @@ export default ({
   ) =>
     new Promise((res) => {
       if (editIndex !== -1 && editIndex !== index) {
-        return message.warn('有未保存的数据，请先保存!');
+        return message.warning('有未保存的数据，请先保存!');
       }
       res(true);
     });
