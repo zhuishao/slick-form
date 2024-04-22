@@ -1,0 +1,28 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches:
+      - master  # 或是你用来开发的主分支名称, 例如 main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Change npm registry to taobao
+      run: npm config set registry https://registry.npm.taobao.org
+
+    - name: Install dependencies
+      run: npm install
+    - name: Build
+      run: npm run docs:build
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs-dist  # dumi构建后的文件夹，根据实际情况设置
